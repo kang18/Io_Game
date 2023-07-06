@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnMonster()
     {
-        int randomPosition = Random.Range(1, 2);
+        int randomPosition = Random.Range(0, 2);
         int randomMonster = Random.Range(0, 3);
 
 

@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack; // 공격 진행 중인지
 
 
-    public Transform positionUp; 
+    public Transform positionUp;
     public Transform positionDown;
     public Transform bulletPosition;
     public GameObject[] bullet; // 총알 프리팹 담을 배열
@@ -57,7 +57,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move() // 플레이어 위치 이동 함수
     {
-        if(keyUp && !positionUpDown)
+        if (keyUp && !positionUpDown)
         {
             transform.position = positionUp.position;
             positionUpDown = true;
@@ -71,7 +71,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void Attack() // 총알 발사 함수
-    { 
+    {
         if (isAttack)
         {
             GameObject shotbullet = Instantiate(bullet[bulletNumber], bulletPosition.position, Quaternion.identity);
@@ -85,12 +85,4 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-    
-
-
-
-
-
-
 }
