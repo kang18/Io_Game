@@ -21,7 +21,7 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
-
+        LimitCameraArea();
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
     }

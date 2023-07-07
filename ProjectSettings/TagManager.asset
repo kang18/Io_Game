@@ -15,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerRope
+  - Floor
   - 
   - 
   - 
@@ -32,9 +32,9 @@ TagManager:
   - 
   - 
   - 
+  - RopeWrapLayer
   - 
-  - 
-  - 
+  - Rope
   - 
   - 
   - 
