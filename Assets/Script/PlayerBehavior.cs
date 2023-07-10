@@ -65,11 +65,11 @@ public class PlayerBehavior : MonoBehaviour
         // 이동 방향에 따라 오브젝트를 반전
         if (movement.x < 0) // 왼쪽으로 이동 중일 때
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(-1.8f, 1.8f, 1f); // 오브젝트 크기가 수정됨
         }
         else if (movement.x > 0) // 오른쪽으로 이동 중일 때
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(1.8f, 1.8f, 1f);
         }
 
         if (keyJump && !isJump)
@@ -106,7 +106,7 @@ public class PlayerBehavior : MonoBehaviour
 
             if (direction < 0) // 왼쪽 방향일 경우 프리펩을 반전시킴
             {
-                shotBullet.transform.localScale = new Vector3(-1f, 1f, 1f);
+                shotBullet.transform.localScale = new Vector3(-3f, 3f, 1f);  // 반전된 상태로 발사되는 총알의 크기 조절
             }
         }
     }
