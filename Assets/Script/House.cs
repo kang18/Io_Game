@@ -18,8 +18,9 @@ public class House : MonoBehaviour
         originalColor = objectRenderer.material.color;
     }
 
-    public void TakeDamage() // 색상을 변경하는 코루틴 함수 실행
+    public void TakeDamage(int dmg) // 색상을 변경하는 코루틴 함수 실행
     {
+        hp -= dmg;
         StartCoroutine(ChangeColorCoroutine());
     }
 

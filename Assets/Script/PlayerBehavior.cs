@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    public int hp;
+    public int dmg; // 공격력
+    public bool isDamage; // 데미지를 입고 있는지
+    public bool doDie; // 죽었는지 살았는지
+
+
     public float moveSpeed = 5f;  // 이동 스피드
     public float jumpForce = 5f;  // 점프력
     public int bulletNumber; // 현재 발사하는 총알의 번호수(총알 종류)
@@ -19,8 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     private bool isAttack; // 공격 진행 중인지
     public bool isRope; // 로프를 타고 있는지
     public bool isUnderJump; // 하향 점프 하고 있는지
-
-    public bool positionUpDown;
+    public bool positionUpDown; // 지금 상단에 있는지 하단에 있는지
 
 
     private Rigidbody2D rigid;
@@ -37,6 +42,11 @@ public class PlayerBehavior : MonoBehaviour
         KeyInput();
         Move();
         UpdateLayer();
+
+        if(hp < 0)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     private void FixedUpdate()
@@ -59,39 +69,41 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Move()
     {
-        Vector3 movement = new Vector3(moveX, 0f, 0f) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
-
-        // 이동 방향에 따라 오브젝트를 반전
-        if (movement.x < 0) // 왼쪽으로 이동 중일 때
+        if(!isRope)
         {
-            transform.localScale = new Vector3(-1.8f, 1.8f, 1f); // 오브젝트 크기가 수정됨
-        }
-        else if (movement.x > 0) // 오른쪽으로 이동 중일 때
-        {
-            transform.localScale = new Vector3(1.8f, 1.8f, 1f);
-        }
+            Vector3 movement = new Vector3(moveX, 0f, 0f) * moveSpeed * Time.deltaTime;
+            transform.Translate(movement);
 
-        if (keyJump && !isJump)
-        {
-            isJump = true;
-
-            if(movedown)
+            // 이동 방향에 따라 오브젝트를 반전
+            if (movement.x < 0) // 왼쪽으로 이동 중일 때
             {
-                isUnderJump = true;
-                rigid.AddForce(Vector3.up * jumpForce / 2, ForceMode2D.Impulse);
+                transform.localScale = new Vector3(-1.8f, 1.8f, 1f); // 오브젝트 크기가 수정됨
+            }
+            else if (movement.x > 0) // 오른쪽으로 이동 중일 때
+            {
+                transform.localScale = new Vector3(1.8f, 1.8f, 1f);
+            }
+
+            if (keyJump && !isJump)
+            {
+                isJump = true;
+
+                if (movedown)
+                {
+                    isUnderJump = true;
+                    rigid.AddForce(Vector3.up * jumpForce / 2, ForceMode2D.Impulse);
+                }
+                else
+                {
+                    rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                }
             }
             else
             {
-                rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                rigid.AddForce(Vector3.down * 2.33f, ForceMode2D.Force);
             }
-
-            
         }
-        else
-        {
-            rigid.AddForce(Vector3.down * 2.33f, ForceMode2D.Force);
-        }
+       
     }
 
     void Attack()
@@ -121,6 +133,50 @@ public class PlayerBehavior : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
+    }
+
+    public void DecreaseHp(int amount) // 데미지 입는 함수
+    {
+        if (!isDamage)
+        {
+            StartCoroutine(OnDamage());
+            hp -= amount;
+            if (hp < 0)
+            {
+                hp = 0;
+            }
+        }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+
+        Renderer renderer = GetComponent<Renderer>();
+        Material originalMaterial = renderer.material;
+        Material blinkMaterial = new Material(originalMaterial);
+        blinkMaterial.color = Color.red;
+
+        float blinkDuration = 0.1f; // 깜빡임 간격 (초)
+        int blinkCount = 5; // 깜빡임 횟수
+
+        for (int i = 0; i < blinkCount; i++)
+        {
+            renderer.material = blinkMaterial;
+            yield return new WaitForSeconds(blinkDuration);
+
+            renderer.material = originalMaterial;
+            yield return new WaitForSeconds(blinkDuration);
+        }
+
+        isDamage = false;
+        renderer.material = originalMaterial;
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0f);
+        Destroy(gameObject);
     }
 }
 

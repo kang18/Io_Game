@@ -714,7 +714,6 @@ Transform:
   - {fileID: 21423756}
   - {fileID: 13813164}
   - {fileID: 976814134}
-  - {fileID: 1942108955}
   - {fileID: 1365580395}
   - {fileID: 1323778839}
   m_Father: {fileID: 0}
@@ -1031,9 +1030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbe369414972684fbbad1f0770482a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSpeed: 1
+  spawnSpeed: 4
   Monsters:
-  - {fileID: 6674462020368258999, guid: 77fe20ba197e6834a8d9966dbeb79511, type: 3}
+  - {fileID: 5245822995997829140, guid: 77fe20ba197e6834a8d9966dbeb79511, type: 3}
   spawnPositionUpDown:
   - {fileID: 1056416718}
   - {fileID: 1628826925}
@@ -1052,7 +1051,7 @@ Transform:
   - {fileID: 1056416718}
   - {fileID: 1628826925}
   m_Father: {fileID: 936120548}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1355731324
 GameObject:
@@ -1195,9 +1194,10 @@ Transform:
   m_LocalPosition: {x: -0.40440583, y: -0.08086427, z: 0}
   m_LocalScale: {x: 0.15311983, y: 0.6547782, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1942108955}
   m_Father: {fileID: 936120548}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1365580396
 MonoBehaviour:
@@ -1447,6 +1447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c2cdea3e8a192409f4fa0e7addb823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
+  dmg: 50
+  isDamage: 0
+  doDie: 0
   moveSpeed: 15
   jumpForce: 12.2
   bulletNumber: 0
@@ -1845,12 +1849,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942108954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003964407, y: 0.10551402, z: -0.8080163}
-  m_LocalScale: {x: 0.013334713, y: 0.038587637, z: 1}
+  m_LocalPosition: {x: 2.6152158, y: 0.2846434, z: -0.8080163}
+  m_LocalScale: {x: 0.087086774, y: 0.058932383, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 936120548}
-  m_RootOrder: 4
+  m_Father: {fileID: 1365580395}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1942108956
 BoxCollider2D:
@@ -1925,7 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1471211239}
-  retractForce: 4
+  retractForce: 1.5
 --- !u!120 &2042493273
 LineRenderer:
   m_ObjectHideFlags: 0

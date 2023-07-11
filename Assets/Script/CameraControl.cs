@@ -21,7 +21,7 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
-        LimitCameraArea();
+        LimitCameraArea();   // 게임이 시작한 직후에도 목표를 잘 잡을 수 있도록
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
     }
