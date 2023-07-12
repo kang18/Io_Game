@@ -70,6 +70,10 @@ public class Basic : Monster
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
+
+
+
+
     IEnumerator Attack()
     {
         isAttack = true;
@@ -78,11 +82,11 @@ public class Basic : Monster
         yield return new WaitForSeconds(1.5f);
         attackArea.enabled = true;
 
-        yield return new WaitForSeconds(0.2f);
-        attackArea.enabled = false;
-
-        yield return new WaitForSeconds(1f);
-
+        yield return new WaitForSeconds(1.2f);
+        if(attackArea.enabled)
+        {
+            attackArea.enabled = false;
+        }
         isAttack = false;
         anim.SetBool("isAttack", false);
     }

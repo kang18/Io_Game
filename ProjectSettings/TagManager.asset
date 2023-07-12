@@ -8,6 +8,8 @@ TagManager:
   - Monster
   - House
   - MonsterAttack
+  - Floor
+  - UpArray
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - PlayerDamage
   - Player
   - PlayerRope
   - Floor

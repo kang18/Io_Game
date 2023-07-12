@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 21423758}
   m_Layer: 10
   m_Name: TestFloor_1
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -776,7 +776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056416717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.3, y: 0.9, z: 0}
+  m_LocalPosition: {x: 35.12, y: 2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1033,6 +1033,7 @@ MonoBehaviour:
   spawnSpeed: 4
   Monsters:
   - {fileID: 5245822995997829140, guid: 77fe20ba197e6834a8d9966dbeb79511, type: 3}
+  - {fileID: 4832242177627741055, guid: b9537a450b5021e478efc51f39289730, type: 3}
   spawnPositionUpDown:
   - {fileID: 1056416718}
   - {fileID: 1628826925}
@@ -1452,7 +1453,7 @@ MonoBehaviour:
   isDamage: 0
   doDie: 0
   moveSpeed: 15
-  jumpForce: 12.2
+  jumpForce: 13
   bulletNumber: 0
   attackSpeed: 0.2
   moveX: 0
@@ -1660,7 +1661,7 @@ GameObject:
   - component: {fileID: 1748965662}
   m_Layer: 10
   m_Name: TestFloor_2
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1751,7 +1752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748965657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09043736, y: -0.1406751, z: 0}
+  m_LocalPosition: {x: 0.09043736, y: -0.093, z: 0}
   m_LocalScale: {x: 0.8000828, y: 0.023152582, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

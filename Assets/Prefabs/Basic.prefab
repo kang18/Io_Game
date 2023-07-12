@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 5245822995997829147}
   - component: {fileID: 5245822995997829146}
   - component: {fileID: 5245822995997829141}
+  - component: {fileID: 7441020349070130672}
   m_Layer: 21
   m_Name: Basic
   m_TagString: Monster
@@ -154,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5245822995997829140}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 21.60591, y: 2.628085, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -280,7 +281,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.39}
+  m_Size: {x: 0.22, y: 0.39}
   m_EdgeRadius: 0
 --- !u!114 &5245822995997829141
 MonoBehaviour:
@@ -299,7 +300,35 @@ MonoBehaviour:
   speed: 3
   dodie: 0
   id: 1
+  hitColor: {r: 0, g: 0, b: 0, a: 0}
+  hitDuration: 0.1
   findAttack: 0
   isAttack: 0
   rayLength: 3
   attackArea: {fileID: 2450627966006359725}
+--- !u!61 &7441020349070130672
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245822995997829140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.08}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.22, y: 0.39}
+  m_EdgeRadius: 0

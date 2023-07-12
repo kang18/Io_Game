@@ -20,5 +20,10 @@ public class AttackCollider : MonoBehaviour
         {
             house.TakeDamage(damage);
         }
+
+        if (collision.CompareTag("Floor") || collision.CompareTag("Player") || collision.CompareTag("House"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

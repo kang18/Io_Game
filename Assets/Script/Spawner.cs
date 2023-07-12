@@ -25,10 +25,19 @@ public class Spawner : MonoBehaviour
     private void SpawnMonster()
     {
         int randomPosition = Random.Range(0, 2);
-        int randomMonster = Random.Range(0, 1);
+        int randomMonster = Random.Range(0, 2);
 
+        Transform spawnPosition = spawnPositionUpDown[randomPosition];
 
-        GameObject monster = Instantiate(Monsters[randomMonster], spawnPositionUpDown[randomPosition].position, Quaternion.identity);
+        if (randomMonster == 1)
+        {
+            Vector3 newPosition = spawnPosition.position + new Vector3(0f, 1f, 0f); // Y ¡¬«•∏¶ 1∏∏≈≠ ¡ı∞°Ω√≈¥
+            GameObject monster = Instantiate(Monsters[randomMonster], newPosition, Quaternion.identity);
+        }
+        else
+        {
+            GameObject monster = Instantiate(Monsters[randomMonster], spawnPosition.position, Quaternion.identity);
+        }
     }
 
 }
