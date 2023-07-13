@@ -43,6 +43,15 @@ public class Basic : Monster
         }
     }
 
+
+    private void MoveMonster() // 좌측으로 이동하는 함수
+    {
+        anim.SetBool("isWalk", true);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
+    }
+
+
+
     private void ScanFront() // 전방에 플레이어, 혹은 하우스가 있는 확인하는 함수
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, rayLength, LayerMask.GetMask("Player") | LayerMask.GetMask("House"));
@@ -64,16 +73,7 @@ public class Basic : Monster
         }
     }
 
-    private void MoveMonster() // 좌측으로 이동하는 함수
-    {
-        anim.SetBool("isWalk", true);
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
-    }
-
-
-
-
-
+  
     IEnumerator Attack()
     {
         isAttack = true;
@@ -82,11 +82,11 @@ public class Basic : Monster
         yield return new WaitForSeconds(1.5f);
         attackArea.enabled = true;
 
-        yield return new WaitForSeconds(1.2f);
-        if(attackArea.enabled)
-        {
-            attackArea.enabled = false;
-        }
+        yield return new WaitForSeconds(0.3f);
+        
+        attackArea.enabled = false;
+        
+
         isAttack = false;
         anim.SetBool("isAttack", false);
     }

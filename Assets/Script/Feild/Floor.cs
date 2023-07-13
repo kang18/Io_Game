@@ -14,5 +14,13 @@ public class Floor : MonoBehaviour
             // isJump 상태를 false로 변경
             playerMovement.isJump = false; 
         }
+
+
+        JumpMonster jumpMonster = collision.gameObject.GetComponent<JumpMonster>();
+        if (jumpMonster != null)
+        {
+            jumpMonster.scan = false;
+        }
+
     }
 }

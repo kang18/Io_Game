@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
     private void SpawnMonster()
     {
         int randomPosition = Random.Range(0, 2);
-        int randomMonster = Random.Range(0, 2);
+        int randomMonster = Random.Range(0, 4);
 
         Transform spawnPosition = spawnPositionUpDown[randomPosition];
 
