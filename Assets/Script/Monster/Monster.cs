@@ -41,7 +41,6 @@ public class Monster : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-        Debug.Log("±â´É Áß");
 
         if (collision.gameObject.CompareTag("Bullet") && !dodie)
         {
