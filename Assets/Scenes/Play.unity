@@ -766,7 +766,7 @@ RectTransform:
   m_Children:
   - {fileID: 13992062}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1753,6 +1753,8 @@ MonoBehaviour:
   spawnIndex: 0
   spawnEnd: 0
   readList: 0
+  catchMonsters: 0
+  waveClear: 0
   Monsters:
   - {fileID: 5245822995997829140, guid: 77fe20ba197e6834a8d9966dbeb79511, type: 3}
   - {fileID: 5463684680496497331, guid: 9984ba3c7a3f58747bf68321f7e250e2, type: 3}
@@ -2029,7 +2031,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628826924
 GameObject:
