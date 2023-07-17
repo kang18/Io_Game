@@ -1,0 +1,4 @@
+10,Flying,1
+30,Flying,0
+10,Flying,1
+20,Flying,1

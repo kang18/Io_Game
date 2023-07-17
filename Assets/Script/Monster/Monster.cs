@@ -19,6 +19,8 @@ public class Monster : MonoBehaviour
     private Renderer renderer;
     private Color originalColor;
 
+    public SpawnManager spawnManager; // SpawnManager 스크립트의 참조를 저장할 변수
+
     private void Awake()
     {
         renderer = GetComponent<Renderer>();
@@ -36,12 +38,13 @@ public class Monster : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
+
+        spawnManager = FindObjectOfType<SpawnManager>();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-        Debug.Log("기능 중");
 
         if (collision.gameObject.CompareTag("Bullet") && !dodie)
         {
@@ -69,6 +72,11 @@ public class Monster : MonoBehaviour
         renderer.material.color = hitColor;
         yield return new WaitForSeconds(hitDuration);
         renderer.material.color = originalColor;
+    }
+
+    private void OnDisable()
+    {
+        spawnManager.catchMonsters++;
     }
 
 

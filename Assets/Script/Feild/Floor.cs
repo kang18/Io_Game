@@ -15,6 +15,7 @@ public class Floor : MonoBehaviour
             playerMovement.isJump = false; 
         }
 
+       
 
         JumpMonster jumpMonster = collision.gameObject.GetComponent<JumpMonster>();
         if (jumpMonster != null)

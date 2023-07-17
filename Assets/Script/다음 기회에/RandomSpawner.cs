@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class RandomSpawner : MonoBehaviour
 {
     public float spawnSpeed; // 생성주기
     private float spawnTimer = 0f;
@@ -28,16 +28,8 @@ public class Spawner : MonoBehaviour
         int randomMonster = Random.Range(0, 4);
 
         Transform spawnPosition = spawnPositionUpDown[randomPosition];
-
-        if (randomMonster == 1)
-        {
-            Vector3 newPosition = spawnPosition.position + new Vector3(0f, 1f, 0f); // Y 좌표를 1만큼 증가시킴
-            GameObject monster = Instantiate(Monsters[randomMonster], newPosition, Quaternion.identity);
-        }
-        else
-        {
-            GameObject monster = Instantiate(Monsters[randomMonster], spawnPosition.position, Quaternion.identity);
-        }
+        GameObject monster = Instantiate(Monsters[randomMonster], spawnPosition.position, Quaternion.identity);
+        
     }
 
 }

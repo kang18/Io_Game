@@ -11,7 +11,6 @@ public class PlayerBehavior : MonoBehaviour
     public bool isDamage; // 데미지를 입고 있는지
     public bool doDie; // 죽었는지 살았는지
 
-
     public float moveSpeed = 5f;  // 이동 스피드
     public float jumpForce = 5f;  // 점프력
     public int bulletNumber; // 현재 발사하는 총알의 번호수(총알 종류)
