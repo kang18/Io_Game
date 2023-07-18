@@ -132,7 +132,14 @@ public class PlayerBehavior : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
+
+        if(isDamage && !isRope)
+        {
+            gameObject.layer = LayerMask.NameToLayer("PlayerOnDamage");
+        }
+   
     }
+
 
     public void DecreaseHp(int amount) // 데미지 입는 함수
     {
@@ -146,6 +153,7 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator OnDamage()
     {

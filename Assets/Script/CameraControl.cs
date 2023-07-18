@@ -19,6 +19,14 @@ public class CameraControl : MonoBehaviour
     float height;
     float width;
 
+    float lx;
+    float ly;
+
+    float clampX;
+    float clampY;
+
+    Vector3 temp;
+
     void Start()
     {
         LimitCameraArea();   // 게임이 시작한 직후에도 목표를 잘 잡을 수 있도록
@@ -36,13 +44,16 @@ public class CameraControl : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position,
                                           playerTransform.position + cameraPosition,
                                           Time.deltaTime * cameraMoveSpeed);
-        float lx = mapSize.x - width;
-        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
+        lx = mapSize.x - width;
+        clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
 
-        float ly = mapSize.y - height;
-        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+        ly = mapSize.y - height;
+        clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+        temp.x = clampX;
+        temp.y = clampY;
+        temp.z = -10f;
 
-        transform.position = new Vector3(clampX, clampY, -10f);
+        transform.position = temp;
     }
 
     private void OnDrawGizmos()

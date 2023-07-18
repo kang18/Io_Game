@@ -1568,9 +1568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cab9669d1053b44086d80a36cb83448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
   hitColor: {r: 1, g: 0.08018869, b: 0.08018869, a: 0}
   hitDuration: 0.1
+  player: {fileID: 1471211239}
 --- !u!50 &1365580397
 Rigidbody2D:
   serializedVersion: 4
@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1471211239}
-  retractForce: 1.5
+  retractForce: 2
 --- !u!120 &2042493273
 LineRenderer:
   m_ObjectHideFlags: 0

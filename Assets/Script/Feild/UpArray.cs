@@ -11,12 +11,14 @@ public class UpArray : MonoBehaviour
             Rigidbody2D rigidbody = other.GetComponent<Rigidbody2D>();
             if (rigidbody != null)
             {
-                Vector2 force = new Vector2(0, -8f);
+                Vector2 force = new Vector2(0, -20f);
                 rigidbody.AddForce(force, ForceMode2D.Impulse);
             }
         }
     }
 
+    
+     
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -39,6 +41,7 @@ public class UpArray : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.positionUpDown = false;
+                playerMovement.isUnderJump = false;
             }
         }
     }

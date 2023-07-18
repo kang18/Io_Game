@@ -175,12 +175,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  dmg: 0
+  dmg: 20
   speed: 8
   dodie: 0
   id: 0
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   hitDuration: 0.1
+  spawnManager: {fileID: 0}
   findAttack: 0
   isAttack: 0
   isJump: 0
@@ -313,4 +314,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba3c8e96c3048b41b7ae3c63e28cb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 20

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adef6ffb70693a349aef1d625b2b0c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 50
 --- !u!1 &5654701560477593510
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,12 +300,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
-  dmg: 0
+  dmg: 20
   speed: 2
   dodie: 0
   id: 0
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   hitDuration: 0.1
+  spawnManager: {fileID: 0}
   rayLength: 0
   bulletSpeed: 0
   bombArray: {fileID: 3633801795188023577}

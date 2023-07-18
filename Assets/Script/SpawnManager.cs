@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEditor.PackageManager.UI;
 using TMPro;
 
 public class SpawnManager : MonoBehaviour
@@ -38,7 +37,7 @@ public class SpawnManager : MonoBehaviour
         tmp.text = "Wave" + waveCnt.ToString();
 
 
-
+        // 나중에 최종 스테이지 정해지면 더 이상 다음 텍스트 파일 못 읽도록 수정해야 함
         if (spawnEnd && catchMonsters == spawnList.Count)
         {
             catchMonsters = 0;
