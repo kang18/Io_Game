@@ -20,7 +20,11 @@ public class House : MonoBehaviour
 
     public void TakeDamage(int dmg) // 색상을 변경하는 코루틴 함수 실행
     {
-        player.hp -= dmg;
+        if(player.hp > 0)
+        {
+            player.hp -= dmg;
+        }
+        
         StartCoroutine(ChangeColorCoroutine());
     }
 

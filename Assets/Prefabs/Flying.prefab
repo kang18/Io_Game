@@ -182,6 +182,8 @@ MonoBehaviour:
   id: 1
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   hitDuration: 0.1
+  spawnManager: {fileID: 0}
+  gem: {fileID: 2263181793565373403, guid: 2d546fa288d8d5c4a98de15086777bfc, type: 3}
   findAttack: 0
   isAttack: 0
   rayLength: 9
@@ -219,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5463684680784841509}
   - component: {fileID: 5463684680784841508}
-  m_Layer: 21
+  m_Layer: 23
   m_Name: Step
   m_TagString: Monster
   m_Icon: {fileID: 0}

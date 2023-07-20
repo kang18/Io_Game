@@ -10,6 +10,7 @@ TagManager:
   - MonsterAttack
   - Floor
   - UpArray
+  - Gem
   layers:
   - Default
   - TransparentFX
@@ -34,14 +35,14 @@ TagManager:
   - 
   - Monster
   - MonsterAttack
-  - 
+  - MonsterStep
   - 
   - RopeWrapLayer
   - 
   - Rope
   - 
   - 
-  - 
+  - Gem
   - 
   m_SortingLayers:
   - name: Default

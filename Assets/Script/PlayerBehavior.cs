@@ -15,8 +15,9 @@ public class PlayerBehavior : MonoBehaviour
     public float jumpForce = 5f;  // 점프력
     public int bulletNumber; // 현재 발사하는 총알의 번호수(총알 종류)
     public float attackSpeed; // 공격 스피드
+    public int gemPoint;
     private float attackTimer = 0f;
-
+    
     public float moveX;  // 좌우 키 입력
     public bool movedown;  // 아래방향키 입력
     public bool keyJump; // 점프 키 입력
@@ -105,6 +106,7 @@ public class PlayerBehavior : MonoBehaviour
        
     }
 
+
     void Attack()
     {
         GameObject shotBullet = Instantiate(bullet[bulletNumber], bulletPosition.position, Quaternion.identity);
@@ -121,6 +123,7 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
+
 
     void UpdateLayer()
     {
@@ -180,15 +183,21 @@ public class PlayerBehavior : MonoBehaviour
         renderer.material = originalMaterial;
     }
 
+
     IEnumerator Die()
     {
         yield return new WaitForSeconds(0f);
         Destroy(gameObject);
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Gem"))
+        {
+            gemPoint++;
+        }
+    }
+
+
 }
-
-
-
-
-
-

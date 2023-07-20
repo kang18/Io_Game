@@ -34,8 +34,7 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         // #. UI 띄우기
-        tmp.text = "Wave" + waveCnt.ToString();
-
+        UiControl();
 
         // 나중에 최종 스테이지 정해지면 더 이상 다음 텍스트 파일 못 읽도록 수정해야 함
         if (spawnEnd && catchMonsters == spawnList.Count)
@@ -54,6 +53,16 @@ public class SpawnManager : MonoBehaviour
             spawnTimer = 0f;
         }
     }
+
+
+
+
+    private void UiControl()
+    {
+        tmp.text = "Wave" + waveCnt.ToString();
+    }
+
+
 
     void ReadSpaenTXT()
     {
