@@ -103,15 +103,13 @@ public class PlayerBehavior : MonoBehaviour
                 rigid.AddForce(Vector3.down * 2.33f, ForceMode2D.Force);
             }
         }
-       
     }
-
 
     void Attack()
     {
         GameObject shotBullet = Instantiate(bullet[bulletNumber], bulletPosition.position, Quaternion.identity);
         Rigidbody2D rb = shotBullet.GetComponent<Rigidbody2D>();
-
+        
         if (rb != null)
         {
             float direction = transform.localScale.x > 0 ? 1f : -1f;
@@ -123,7 +121,6 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
-
 
     void UpdateLayer()
     {
@@ -140,9 +137,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("PlayerOnDamage");
         }
-   
     }
-
 
     public void DecreaseHp(int amount) // 데미지 입는 함수
     {
@@ -156,7 +151,6 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
-
 
     IEnumerator OnDamage()
     {
@@ -183,13 +177,11 @@ public class PlayerBehavior : MonoBehaviour
         renderer.material = originalMaterial;
     }
 
-
     IEnumerator Die()
     {
         yield return new WaitForSeconds(0f);
         Destroy(gameObject);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -198,6 +190,4 @@ public class PlayerBehavior : MonoBehaviour
             gemPoint++;
         }
     }
-
-
 }
