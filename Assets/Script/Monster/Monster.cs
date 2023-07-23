@@ -12,8 +12,8 @@ public class Monster : MonoBehaviour
     public bool id; // 프리팹이 왼쪽과 오른쪽 중 어느 방향을 바라보고 있는지에 따라 스프라이트를 뒤집기 위해서
     
     // 피격시 깜빡임을 위한 변수들
-    public Color hitColor;  // 피격시 보여지는 색상
-    public float hitDuration = 0.1f;  // 색상이 바뀌는 시간
+    public Color hitColor; // 피격시 보여지는 색상
+    public float hitDuration = 0.1f; // 색상이 바뀌는 시간
     private Renderer renderer;
     private Color originalColor;
 
@@ -22,6 +22,7 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
+        renderer = GetComponent<Renderer>();
         originalColor = renderer.material.color;
     }
 
