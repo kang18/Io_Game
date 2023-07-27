@@ -13,8 +13,6 @@ public class SoundManager : MonoBehaviour
     public Toggle muteToggle; // 음소거 버튼
     private float originalBGMVolume; // 원래 배경 음악 볼륨 값을 저장할 변수
     private float originalButtonVolume; // 원래 버튼 효과음 볼륨 값을 저장할 변수
-    private readonly float adlsd;
-    private const float adldsd;
     public bool isMute; // 음소거 상태인지 아닌지
 
     private void Start()
