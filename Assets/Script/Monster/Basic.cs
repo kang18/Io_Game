@@ -22,7 +22,7 @@ public class Basic : Monster
 
     private void Update()
     {
-        if(hp <= 0 && !dodie)
+        if (hp <= 0 && !dodie)
         {
             StartCoroutine(Die());
         }
@@ -63,17 +63,19 @@ public class Basic : Monster
             if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("House"))
             {
                 anim.SetBool("isWalk", false);
-                findAttack = true;  
+                findAttack = true;
             }
         }
         else
         {
             anim.SetBool("isWalk", true);
-            findAttack = false;  
+            findAttack = false;
         }
     }
 
-  
+
+
+
     IEnumerator Attack()
     {
         isAttack = true;
@@ -83,13 +85,17 @@ public class Basic : Monster
         attackArea.enabled = true;
 
         yield return new WaitForSeconds(0.3f);
-        
+
         attackArea.enabled = false;
-        
 
         isAttack = false;
         anim.SetBool("isAttack", false);
     }
+
+
+
+
+
 
     IEnumerator Die()
     {
@@ -114,38 +120,3 @@ public class Basic : Monster
 
 
 
-
-
-//switch (enemyType)
-//{
-//    case Type.A:
-//        yield return new WaitForSeconds(0.2f);   // 애니메이션에 맞춰서 맞는 판정이 나도록 
-//        meleeArea.enabled = true;
-
-//        yield return new WaitForSeconds(1f);
-//        meleeArea.enabled = false;
-
-//        yield return new WaitForSeconds(1f);
-//        break;
-
-//    case Type.B:
-//        yield return new WaitForSeconds(0.1f);
-//        rigid.AddForce(transform.forward * 20, ForceMode.Impulse);
-//        meleeArea.enabled = true;
-
-//        yield return new WaitForSeconds(0.5f);
-//        rigid.velocity = Vector3.zero;
-//        meleeArea.enabled = false;
-
-//        yield return new WaitForSeconds(2f);
-//        break;
-
-//    case Type.C:
-//        yield return new WaitForSeconds(0.5f);
-//        GameObject instantBullet = Instantiate(bullet, transform.position, transform.rotation);
-//        Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
-//        rigidBullet.velocity = transform.forward * 20;
-
-//        yield return new WaitForSeconds(2f);
-//        break;
-//}

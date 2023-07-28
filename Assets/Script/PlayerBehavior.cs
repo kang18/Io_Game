@@ -7,7 +7,6 @@ using UnityEngine;
 // 기본공격 / 폭탄을 던지고 있음 / 라인클리어 궁긍기 사용시 is~~를 이용해서 현재 어떤 행동을 하고 있는지 구분해야함
 // 현재는 레이저 발사만 되어 있음
 
-
 public class PlayerBehavior : MonoBehaviour
 {
     public int hp;
@@ -35,14 +34,16 @@ public class PlayerBehavior : MonoBehaviour
     public bool isUnderJump; // 하향 점프 하고 있는지
     public bool positionUpDown; // 지금 상단에 있는지 하단에 있는지
 
-
+    private bool isSkillb = false; // 2번 스킬 사용중인지 아닌지
     private bool isSkillc = false; // 3번 스킬 사용중인지 아닌지
-
 
     private Rigidbody2D rigid;
     public Transform bulletPosition;
     public GameObject[] bullet; // 총알 프리팹 담을 배열
     public GameObject gemBomb; // 스킬 1번에 사용될 프리팹
+    public GameObject laserTrajectory; // 스킬 2번에 사용될 프리팹
+    public GameObject laserBeam; // 스킬 2번에 사용될 프리팹
+    public BoxCollider2D laserCollider; // 스킬 2번에 사용될 프리팹
     public GameObject whiteScreen; // 스킬 3번에 사용될 프리팹
     public GameObject whiteScreenDmg; // 스킬 3번에 사용될 프리팹
     public float fadeInDuration; // 알파값이 최대로 변하는 시간 (페이드 인)
@@ -71,15 +72,19 @@ public class PlayerBehavior : MonoBehaviour
             ThrowGemBomb();
         }
 
+        if(keySkillb)
+        {
+            StartCoroutine(LaserThrow());
+        }
+
         if (keySkillc && !isJump)
         {
             if (fadeCoroutine != null)
+            {
                 StopCoroutine(fadeCoroutine);
-
+            }
             fadeCoroutine = StartCoroutine(WhiteScreenFade());
         }
-
-
     }
 
     private void FixedUpdate()
@@ -228,7 +233,7 @@ public class PlayerBehavior : MonoBehaviour
     }
 
 
-    private void ThrowGemBomb()
+    private void ThrowGemBomb() // Skill 1번
     {
         GameObject shotBullet = Instantiate(gemBomb, bulletPosition.position, Quaternion.identity);
         Rigidbody2D rb = shotBullet.GetComponent<Rigidbody2D>();
@@ -243,6 +248,31 @@ public class PlayerBehavior : MonoBehaviour
                 shotBullet.transform.localScale = new Vector3(-1f, 1f, 1f);  // 반전된 상태로 발사되는 총알의 크기 조절
             }
         }
+    }
+
+
+    private IEnumerator LaserThrow()
+    {
+        // 1번 오브젝트 활성화
+        laserTrajectory.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        laserTrajectory.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        laserBeam.SetActive(true);
+
+        float elapsedTime = 0f; // 타이머 변수 초기화
+        while (elapsedTime < 2f) // 2초까지만 반복  @@ 이 숫자랑 아래에 경과 시간 업데이트랑 시간 맞아야 함
+        {
+            laserCollider.enabled = true; // Collider를 활성화
+            yield return new WaitForSeconds(0.08f); 
+            laserCollider.enabled = false; // Collider를 비활성화
+            yield return new WaitForSeconds(0.08f); 
+
+            elapsedTime += 0.1f; // 경과 시간 업데이트
+        }
+
+        laserBeam.SetActive(false);
+
     }
 
 

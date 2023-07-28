@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2450627966006359724}
   - component: {fileID: 2450627966006359727}
   - component: {fileID: 2450627966006359725}
-  - component: {fileID: 5081966345768823306}
+  - component: {fileID: 6370135682579010577}
   m_Layer: 0
-  m_Name: AttackCollider
+  m_Name: GolemAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 3.09}
   m_EdgeRadius: 0
---- !u!114 &5081966345768823306
+--- !u!114 &6370135682579010577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2450627966006359726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba3c8e96c3048b41b7ae3c63e28cb04, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a72a893943ab6b4bb539c380de184cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  knockbackForce: 10
+  knockbackUpForce: 50
 --- !u!1 &5245822995997829140
 GameObject:
   m_ObjectHideFlags: 0
