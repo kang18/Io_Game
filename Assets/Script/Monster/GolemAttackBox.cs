@@ -16,10 +16,13 @@ public class GolemAttackBox : MonoBehaviour
         if (playerBehavior != null)
         {
             playerBehavior.DecreaseHp(damage);
+
             playerBehavior.isRope = true;
             KnockbackPlayer(collision.transform.position);
         }
         
+        
+
         if (house != null)
         {
             house.TakeDamage(damage);

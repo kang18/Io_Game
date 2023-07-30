@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // 기본공격 / 폭탄을 던지고 있음 / 라인클리어 궁긍기 사용시 is~~를 이용해서 현재 어떤 행동을 하고 있는지 구분해야함
@@ -59,7 +60,11 @@ public class PlayerBehavior : MonoBehaviour
     private void Update()
     {
         KeyInput();
-        Move();
+
+        if(!isSkillb && !isSkillc)
+        {
+            Move();
+        }
         UpdateLayer();
 
         if(hp < 0)
@@ -67,17 +72,17 @@ public class PlayerBehavior : MonoBehaviour
             StartCoroutine(Die());
         }
 
-        if (keySkilla)
+        if (keySkilla && !isSkillb && !isSkillc) // 스킬 1번
         {
             ThrowGemBomb();
         }
 
-        if(keySkillb)
+        if(keySkillb && !isJump && !isSkillb && !isSkillc)  // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
         {
             StartCoroutine(LaserThrow());
         }
 
-        if (keySkillc && !isJump)
+        if (keySkillc && !isJump && !isSkillb && !isSkillc) // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
         {
             if (fadeCoroutine != null)
             {
@@ -253,6 +258,9 @@ public class PlayerBehavior : MonoBehaviour
 
     private IEnumerator LaserThrow()
     {
+        isSkillb = true;
+        isDamage = true; // 스킬 사용 중 무적
+
         // 1번 오브젝트 활성화
         laserTrajectory.SetActive(true);
         yield return new WaitForSeconds(1.5f);
@@ -272,12 +280,16 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         laserBeam.SetActive(false);
-
-    }
+        isSkillb = false;
+        isDamage = false;  // 무적 해제
+    } 
 
 
     private IEnumerator WhiteScreenFade()
     {
+        isSkillc = true;
+        isDamage = true;  // 스킬 사용 중 무적
+
         // 페이드 인 (화면이 서서히 밝아짐)
         whiteScreen.SetActive(true);
 
@@ -297,6 +309,10 @@ public class PlayerBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         whiteScreenDmg.SetActive(false);
 
+
+        isSkillc = false;
+        isDamage = true; // 무적 해제
+
         // 페이드 아웃 (화면이 서서히 어두워짐)
         elapsedTime = 0f;
         while (elapsedTime < fadeOutDuration)
@@ -309,6 +325,7 @@ public class PlayerBehavior : MonoBehaviour
 
         // 페이드가 끝난 후 화면 가림막 비활성화
         whiteScreen.SetActive(false);
+        
     }
 
     private void SetWhiteScreenAlpha(float alpha)
