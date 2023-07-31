@@ -309,9 +309,8 @@ public class PlayerBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         whiteScreenDmg.SetActive(false);
 
-
         isSkillc = false;
-        isDamage = true; // 무적 해제
+        isDamage = false; // 무적 해제
 
         // 페이드 아웃 (화면이 서서히 어두워짐)
         elapsedTime = 0f;

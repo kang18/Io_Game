@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 6991849013916550155, guid: b9517addf15136e47a89337d912454b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -221,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5463684680784841509}
   - component: {fileID: 5463684680784841508}
-  m_Layer: 23
+  m_Layer: 21
   m_Name: Step
   m_TagString: Monster
   m_Icon: {fileID: 0}
