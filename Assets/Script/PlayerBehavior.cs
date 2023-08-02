@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -76,21 +77,38 @@ public class PlayerBehavior : MonoBehaviour
 
         if (keySkilla && !isSkillb && !isSkillc) // 스킬 1번
         {
-            ThrowGemBomb();
+            if(gemPoint >= 1)
+            {
+                gemPoint--;
+                gameManager.GemUpdate(gemPoint);
+                ThrowGemBomb();
+            }
+            
         }
 
         if(keySkillb && !isJump && !isSkillb && !isSkillc)  // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
         {
-            StartCoroutine(LaserThrow());
+            if (gemPoint >= 3)
+            {
+                gemPoint -= 3;
+                gameManager.GemUpdate(gemPoint);
+                StartCoroutine(LaserThrow());
+            }
         }
 
         if (keySkillc && !isJump && !isSkillb && !isSkillc) // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
         {
-            if (fadeCoroutine != null)
+            if (gemPoint >= 5)
             {
-                StopCoroutine(fadeCoroutine);
+                gemPoint -= 5;
+                gameManager.GemUpdate(gemPoint);
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                }
+                fadeCoroutine = StartCoroutine(WhiteScreenFade());
             }
-            fadeCoroutine = StartCoroutine(WhiteScreenFade());
+                
         }
     }
 
@@ -231,20 +249,6 @@ public class PlayerBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Gem"))
-        {
-            if(gemPoint < 6) // 젬이 6개 이하이면
-            {
-                gemPoint++;
-                gameManager.GemUpdate(gemPoint);
-            }
-          
-        }
-    }
-
-
     private void ThrowGemBomb() // Skill 1번
     {
         GameObject shotBullet = Instantiate(gemBomb, bulletPosition.position, Quaternion.identity);
@@ -340,6 +344,24 @@ public class PlayerBehavior : MonoBehaviour
         Color color = renderer.material.color;
         color.a = alpha;
         renderer.material.color = color;
+    }
+
+
+
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Gem"))
+        {
+            if (gemPoint < 6) // 젬이 6개 이하이면
+            {
+                gemPoint++;
+                gameManager.GemUpdate(gemPoint);
+            }
+
+        }
     }
 
 

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerBehavior player;
     public Image hpBar;
     public GameObject []gemBar;
+    public Image[] skillShadow;
     public GameObject playOption;
     public GameObject soundPanel;
 
@@ -34,6 +35,30 @@ public class GameManager : MonoBehaviour
     {
         // #. 플레이어 상태 정보 업데이트
         hpBar.fillAmount = (float)player.hp * 0.01f;
+        if(player.gemPoint == 0)
+        {
+            skillShadow[0].fillAmount = 1f;
+            skillShadow[1].fillAmount = 1f;
+            skillShadow[2].fillAmount = 1f;
+        }
+        else if(player.gemPoint >= 1)
+        {
+            skillShadow[0].fillAmount = 0f;
+            skillShadow[1].fillAmount = 1f;
+            skillShadow[2].fillAmount = 1f;
+        }
+        else if (player.gemPoint >= 3)
+        {
+            skillShadow[0].fillAmount = 0f;
+            skillShadow[1].fillAmount = 0f;
+            skillShadow[2].fillAmount = 1f;
+        }
+        else if (player.gemPoint >= 5)
+        {
+            skillShadow[0].fillAmount = 0f;
+            skillShadow[1].fillAmount = 0f;
+            skillShadow[2].fillAmount = 0f;
+        }
 
 
 
