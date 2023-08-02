@@ -51,6 +51,8 @@ public class PlayerBehavior : MonoBehaviour
     public float fadeOutDuration; // 알파값이 다시 원래 값으로 돌아오는 시간 (페이드 아웃)
     private Coroutine fadeCoroutine;
 
+    public GameManager gameManager;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -236,6 +238,7 @@ public class PlayerBehavior : MonoBehaviour
             if(gemPoint < 6) // 젬이 6개 이하이면
             {
                 gemPoint++;
+                gameManager.GemUpdate(gemPoint);
             }
           
         }

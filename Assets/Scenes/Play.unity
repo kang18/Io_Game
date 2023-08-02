@@ -583,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &49409031
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1034,7 +1034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &146699852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1926,7 +1926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &429150299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4123,7 +4123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1250822279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4831,11 +4831,11 @@ MonoBehaviour:
   player: {fileID: 1471211239}
   hpBar: {fileID: 1764452484}
   gemBar:
-  - {fileID: 1250822280}
-  - {fileID: 146699853}
-  - {fileID: 49409032}
-  - {fileID: 429150300}
-  - {fileID: 1565046498}
+  - {fileID: 1250822278}
+  - {fileID: 146699851}
+  - {fileID: 49409030}
+  - {fileID: 429150298}
+  - {fileID: 1565046496}
   playOption: {fileID: 1826942077}
   soundPanel: {fileID: 854429763}
 --- !u!1 &1391853783
@@ -5245,6 +5245,7 @@ MonoBehaviour:
   whiteScreenDmg: {fileID: 2077518361}
   fadeInDuration: 2
   fadeOutDuration: 3.5
+  gameManager: {fileID: 1373576851}
 --- !u!61 &1471211240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5497,7 +5498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1565046497
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7070,7 +7071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2115561270
 Transform:
   m_ObjectHideFlags: 0

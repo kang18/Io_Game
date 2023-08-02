@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerBehavior player;
     public Image hpBar;
-    public Image []gemBar;
+    public GameObject []gemBar;
     public GameObject playOption;
     public GameObject soundPanel;
 
@@ -34,25 +34,6 @@ public class GameManager : MonoBehaviour
     {
         // #. 플레이어 상태 정보 업데이트
         hpBar.fillAmount = (float)player.hp * 0.01f;
-        
-
-
-
-
-
-
-
-        // gemPoint 만들고 있었음
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -61,6 +42,37 @@ public class GameManager : MonoBehaviour
             TogglePause(); 
         }
     }
+
+
+
+
+    public void GemUpdate(int count)
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if(i < count)
+            {
+                gemBar[i].SetActive(true);
+            }
+            else
+            {
+                gemBar[i].SetActive(false);
+            }
+           
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void TogglePause()
     {
