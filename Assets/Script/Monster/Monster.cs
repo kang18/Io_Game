@@ -74,10 +74,7 @@ public class Monster : MonoBehaviour
     private void OnDisable()
     {
         spawnManager.catchMonsters++;
-        if (Random.Range(0f, 100f) <= 30f)
-        {
-            GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
-        }
+        
     }
 }
 

@@ -11,4 +11,5 @@ public class Gem : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

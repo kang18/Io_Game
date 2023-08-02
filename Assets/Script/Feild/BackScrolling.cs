@@ -39,7 +39,7 @@ public class BackScrolling : MonoBehaviour
         for (int i = 0; i < layers.Length; i++)
         {
             // 패럴랙스 배경의 목표 위치 계산
-            float parallaxAmountX = playerTransform.position.x * parallaxFactorsX[i];
+            float parallaxAmountX = playerTransform.position.x * parallaxFactorsX[i] * (-1f);
             float parallaxAmountY = Mathf.Clamp(-playerTransform.position.y * parallaxFactorsY[i], -maxY, -minY); // 위아래 이동 방향을 반대로 설정하고 Y축 이동 범위를 제한
             targetPositions[i] = initialPositions[i] + new Vector3(parallaxAmountX, parallaxAmountY, 0f);
         }

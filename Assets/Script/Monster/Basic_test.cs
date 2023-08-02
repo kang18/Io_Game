@@ -110,6 +110,11 @@ public class Basic_test : Monster
         rigidbody.simulated = false;
 
         yield return new WaitForSeconds(1.15f);
+        if (Random.Range(0f, 100f) <= 30f)
+        {
+            GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 }

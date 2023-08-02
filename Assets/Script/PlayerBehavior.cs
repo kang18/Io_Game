@@ -233,7 +233,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Gem"))
         {
-            gemPoint++;
+            if(gemPoint < 6) // 젬이 6개 이하이면
+            {
+                gemPoint++;
+            }
+          
         }
     }
 

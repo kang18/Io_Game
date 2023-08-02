@@ -37,6 +37,12 @@ public class SpawnManager : MonoBehaviour
         UiControl();
 
         // 나중에 최종 스테이지 정해지면 더 이상 다음 텍스트 파일 못 읽도록 수정해야 함
+        if (GameManager.Instance.IsPaused) // GameManager의 IsPaused를 체크하여 일시정지 중인지 확인
+        {
+            spawnTimer = 0f; // 일시정지 중에는 스폰 타이머를 리셋하여 스폰이 멈춤
+            return; // 일시정지 중이면 몬스터 스폰을 진행하지 않음
+        }
+
         if (spawnEnd && catchMonsters == spawnList.Count)
         {
             catchMonsters = 0;
