@@ -7,7 +7,6 @@ public class Monster : MonoBehaviour
     public int hp;
     public int dmg;
     public float speed = 5f;
-
     public bool dodie; // 죽었는지 살았는지
     public bool id; // 프리팹이 왼쪽과 오른쪽 중 어느 방향을 바라보고 있는지에 따라 스프라이트를 뒤집기 위해서
     
@@ -74,7 +73,6 @@ public class Monster : MonoBehaviour
     private void OnDisable()
     {
         spawnManager.catchMonsters++;
-        
     }
 }
 

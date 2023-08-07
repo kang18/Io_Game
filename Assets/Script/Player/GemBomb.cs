@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class GemBomb : MonoBehaviour
@@ -22,4 +23,18 @@ public class GemBomb : MonoBehaviour
         // Destroy the GemBomb object
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            // Spawn the explosionPrefab at the current position and rotation
+            Instantiate(explosionPrefab, transform.position, transform.rotation);
+            // Destroy the GemBomb object
+            Destroy(gameObject);
+
+        }
+    }
+
+
 }

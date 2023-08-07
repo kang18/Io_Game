@@ -12,6 +12,7 @@ public class JumpMonster : Monster
 
     public BoxCollider2D attackArea; // 공격 범위
 
+
     public float jumpForce = 5f;
     public float jumpDelay = 1f;
 
@@ -47,7 +48,7 @@ public class JumpMonster : Monster
                 }
                 else
                 {
-                    StartCoroutine(Attack());
+                    StartCoroutine(Bress());
                 }
             }
 
@@ -101,19 +102,76 @@ public class JumpMonster : Monster
         }
     }
 
-    IEnumerator Attack()
+    // #. 제일 처음 기본 공격 함수
+
+    //IEnumerator Attack()
+    //{
+    //    isAttack = true;
+
+    //    yield return new WaitForSeconds(1.5f);
+    //    attackArea.enabled = true;
+
+    //    yield return new WaitForSeconds(0.3f);
+
+    //    attackArea.enabled = false;
+
+    //    isAttack = false;
+    //}
+
+
+
+    // #. 데미지가 불을 뿜는 서서히 들어감, 함수 안에 있는 수치들을 조정해서 공격 주기 조절 가능
+
+    IEnumerator Bress()
     {
         isAttack = true;
 
-        yield return new WaitForSeconds(1.5f);
-        attackArea.enabled = true;
+        float elapsedTime = 0f; // 타이머 변수 초기화
+        while (elapsedTime < 1f) // 2초까지만 반복  @@ 이 숫자랑 아래에 경과 시간 업데이트랑 시간 맞아야 함
+        {
+            attackArea.enabled = true; // Collider를 활성화
+            yield return new WaitForSeconds(0.08f);
+            attackArea.enabled = false; // Collider를 비활성화
+            yield return new WaitForSeconds(0.08f);
 
-        yield return new WaitForSeconds(0.3f);
+            elapsedTime += 0.1f; // 경과 시간 업데이트
+        }
 
+        // 여기서는 꺼짐 상태로 마무리
         attackArea.enabled = false;
+
+
+        yield return new WaitForSeconds(3f);
+
 
         isAttack = false;
     }
+
+
+
+
+    //private IEnumerator Bress()
+    //{
+    //    isAttack = true;
+
+    //    bressArray.SetActive(true);
+
+    //    float elapsedTime = 0f; // 타이머 변수 초기화
+    //    while (elapsedTime < 2f) // 2초까지만 반복  @@ 이 숫자랑 아래에 경과 시간 업데이트랑 시간 맞아야 함
+    //    {
+    //        bressArrayCollider.enabled = true; // Collider를 활성화
+    //        yield return new WaitForSeconds(0.08f);
+    //        bressArrayCollider.enabled = false; // Collider를 비활성화
+    //        yield return new WaitForSeconds(0.08f);
+    //        elapsedTime += 0.1f; // 경과 시간 업데이트
+    //    }
+
+    //    isAttack = false;
+    //}
+
+
+
+
 
     private void Jump()
     {

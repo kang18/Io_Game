@@ -62,54 +62,60 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Update()
     {
-        KeyInput();
-
-        if(!isSkillb && !isSkillc)
+        if (hp == 0 && !doDie)
         {
-            Move();
-        }
-        UpdateLayer();
-
-        if(hp < 0)
-        {
-            StartCoroutine(Die());
+            Die();
         }
 
-        if (keySkilla && !isSkillb && !isSkillc) // 스킬 1번
+
+        if(!doDie)
         {
-            if(gemPoint >= 1)
+            KeyInput();
+            if (!isSkillb && !isSkillc)
             {
-                gemPoint--;
-                gameManager.GemUpdate(gemPoint);
-                ThrowGemBomb();
+                Move();
             }
-            
-        }
 
-        if(keySkillb && !isJump && !isSkillb && !isSkillc)  // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
-        {
-            if (gemPoint >= 3)
-            {
-                gemPoint -= 3;
-                gameManager.GemUpdate(gemPoint);
-                StartCoroutine(LaserThrow());
-            }
-        }
+            UpdateLayer();
 
-        if (keySkillc && !isJump && !isSkillb && !isSkillc) // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
-        {
-            if (gemPoint >= 5)
+            if (keySkilla && !isSkillb && !isSkillc) // 스킬 1번
             {
-                gemPoint -= 5;
-                gameManager.GemUpdate(gemPoint);
-                if (fadeCoroutine != null)
+                if (gemPoint >= 1)
                 {
-                    StopCoroutine(fadeCoroutine);
+                    gemPoint--;
+                    gameManager.GemUpdate(gemPoint);
+                    ThrowGemBomb();
                 }
-                fadeCoroutine = StartCoroutine(WhiteScreenFade());
+
             }
-                
+
+            if (keySkillb && !isJump && !isSkillb && !isSkillc)  // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
+            {
+                if (gemPoint >= 3)
+                {
+                    gemPoint -= 3;
+                    gameManager.GemUpdate(gemPoint);
+                    StartCoroutine(LaserThrow());
+                }
+            }
+
+            if (keySkillc && !isJump && !isSkillb && !isSkillc) // 점프, 스킬2, 스킬3 사용 중에는 사용 불가
+            {
+                if (gemPoint >= 5)
+                {
+                    gemPoint -= 5;
+                    gameManager.GemUpdate(gemPoint);
+                    if (fadeCoroutine != null)
+                    {
+                        StopCoroutine(fadeCoroutine);
+                    }
+                    fadeCoroutine = StartCoroutine(WhiteScreenFade());
+                }
+
+            }
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -143,11 +149,11 @@ public class PlayerBehavior : MonoBehaviour
             // 이동 방향에 따라 오브젝트를 반전
             if (movement.x < 0) // 왼쪽으로 이동 중일 때
             {
-                transform.localScale = new Vector3(-1.8f, 1.8f, 1f); // 오브젝트 크기가 수정됨
+                transform.localScale = new Vector3(-3f, 3f, 1f); // 오브젝트 크기가 수정됨
             }
             else if (movement.x > 0) // 오른쪽으로 이동 중일 때
             {
-                transform.localScale = new Vector3(1.8f, 1.8f, 1f);
+                transform.localScale = new Vector3(3f, 3f, 1f);
             }
 
             if (keyJump && !isJump)
@@ -220,34 +226,47 @@ public class PlayerBehavior : MonoBehaviour
 
     IEnumerator OnDamage()
     {
-        isDamage = true;
+        if(!doDie)
+        {
+            isDamage = true;
+
+            Renderer renderer = GetComponent<Renderer>();
+            Material originalMaterial = renderer.material;
+            Material blinkMaterial = new Material(originalMaterial);
+            blinkMaterial.color = Color.red;
+
+            float blinkDuration = 0.1f; // 깜빡임 간격 (초)
+            int blinkCount = 5; // 깜빡임 횟수
+
+            for (int i = 0; i < blinkCount; i++)
+            {
+                renderer.material = blinkMaterial;
+                yield return new WaitForSeconds(blinkDuration);
+
+                renderer.material = originalMaterial;
+                yield return new WaitForSeconds(blinkDuration);
+            }
+
+            isDamage = false;
+            renderer.material = originalMaterial;
+        }  
+    }
+
+
+    private void Die() // 그냥 단순하게 죽었다는 것만 연출하는 함수임
+    {
+        doDie = true;
 
         Renderer renderer = GetComponent<Renderer>();
         Material originalMaterial = renderer.material;
-        Material blinkMaterial = new Material(originalMaterial);
-        blinkMaterial.color = Color.red;
+        Material dieMaterial = new Material(originalMaterial);
+        dieMaterial.color = Color.black;
 
-        float blinkDuration = 0.1f; // 깜빡임 간격 (초)
-        int blinkCount = 5; // 깜빡임 횟수
+        renderer.material = dieMaterial;
 
-        for (int i = 0; i < blinkCount; i++)
-        {
-            renderer.material = blinkMaterial;
-            yield return new WaitForSeconds(blinkDuration);
-
-            renderer.material = originalMaterial;
-            yield return new WaitForSeconds(blinkDuration);
-        }
-
-        isDamage = false;
-        renderer.material = originalMaterial;
+        gameManager.DieEvent();
     }
-
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(0f);
-        Destroy(gameObject);
-    }
+    
 
     private void ThrowGemBomb() // Skill 1번
     {

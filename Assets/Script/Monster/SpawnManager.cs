@@ -24,6 +24,7 @@ public class SpawnManager : MonoBehaviour
 
 
     public TMP_Text tmp;
+    public TMP_Text wave;
 
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class SpawnManager : MonoBehaviour
     private void UiControl()
     {
         tmp.text = "Wave" + waveCnt.ToString();
+        wave.text = "Max Wave : " + waveCnt.ToString();
     }
 
 

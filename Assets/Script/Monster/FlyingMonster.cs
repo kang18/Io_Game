@@ -12,11 +12,11 @@ public class FlyingMonster : Monster
     public GameObject flyingBullet; // 발사할 총알 프리펩
     public GameObject step; // 공중에 떠 있는 느낌을 주기 위한 발판
 
-    Animator anim;
+    //Animator anim;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -73,7 +73,7 @@ public class FlyingMonster : Monster
 
     IEnumerator FireBullet(Vector3 targetPosition)
     {
-        anim.SetBool("isAttack", true);
+        //anim.SetBool("isAttack", true);
         isAttack = true;
         yield return new WaitForSeconds(0.7f);
 
@@ -89,7 +89,7 @@ public class FlyingMonster : Monster
      
 
 
-        anim.SetBool("isAttack", false);
+        //anim.SetBool("isAttack", false);
 
         yield return new WaitForSeconds(0.2f);
 
@@ -99,7 +99,7 @@ public class FlyingMonster : Monster
     IEnumerator Die()
     {
         dodie = true;
-        anim.SetTrigger("doDie");
+        //anim.SetTrigger("doDie");
         step.SetActive(false);
 
         // 콜라이더 비활성화

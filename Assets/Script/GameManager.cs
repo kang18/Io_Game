@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public bool IsPaused { get => isPaused; } // isPaused를 외부에서 읽기만 가능하도록 getter만 선언
 
-
+   
     public PlayerBehavior player;
     public Image hpBar;
     public GameObject []gemBar;
     public Image[] skillShadow;
     public GameObject playOption;
     public GameObject soundPanel;
+    public GameObject gameoverPanel;
 
 
     private void Awake()
@@ -35,30 +36,32 @@ public class GameManager : MonoBehaviour
     {
         // #. 플레이어 상태 정보 업데이트
         hpBar.fillAmount = (float)player.hp * 0.01f;
-        if(player.gemPoint == 0)
-        {
-            skillShadow[0].fillAmount = 1f;
-            skillShadow[1].fillAmount = 1f;
-            skillShadow[2].fillAmount = 1f;
-        }
-        else if(player.gemPoint >= 1)
-        {
-            skillShadow[0].fillAmount = 0f;
-            skillShadow[1].fillAmount = 1f;
-            skillShadow[2].fillAmount = 1f;
-        }
-        else if (player.gemPoint >= 3)
-        {
-            skillShadow[0].fillAmount = 0f;
-            skillShadow[1].fillAmount = 0f;
-            skillShadow[2].fillAmount = 1f;
-        }
-        else if (player.gemPoint >= 5)
+        if(player.gemPoint >= 5)
         {
             skillShadow[0].fillAmount = 0f;
             skillShadow[1].fillAmount = 0f;
             skillShadow[2].fillAmount = 0f;
         }
+        else if(player.gemPoint >= 3)
+        {
+            skillShadow[0].fillAmount = 0f;
+            skillShadow[1].fillAmount = 0f;
+            skillShadow[2].fillAmount = 1f;
+        }
+        else if (player.gemPoint >= 1)
+        {
+            skillShadow[0].fillAmount = 0f;
+            skillShadow[1].fillAmount = 1f;
+            skillShadow[2].fillAmount = 1f;
+        }
+        else if (player.gemPoint == 0)
+        {
+            skillShadow[0].fillAmount = 1f;
+            skillShadow[1].fillAmount = 1f;
+            skillShadow[2].fillAmount = 1f;
+        }
+
+
 
 
 
@@ -67,9 +70,6 @@ public class GameManager : MonoBehaviour
             TogglePause(); 
         }
     }
-
-
-
 
     public void GemUpdate(int count)
     {
@@ -88,15 +88,25 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void DieEvent()
+    {
+        TogglePauseSimple();
+        gameoverPanel.SetActive(true); // 게임 오버 패널 활성화
+    }
 
+    private void TogglePauseSimple()
+    {
+        isPaused = !isPaused;
 
-
-
-
-
-
-
-
+        if (isPaused)
+        {
+            Time.timeScale = 0f; // 게임 일시정지
+        }
+        else
+        {
+            Time.timeScale = 1f; // 게임 진행
+        }
+    }
 
 
     public void TogglePause()
@@ -125,13 +135,22 @@ public class GameManager : MonoBehaviour
 
     public void SceneToPlay() // Option 창에 "다시하기" 버튼이랑 연결되어 있음
     {
+        if (gameoverPanel.activeSelf)
+        {
+            gameoverPanel.SetActive(false);
+        }
+
         TogglePause();
         SceneManager.LoadScene("Play");
-           
     }
 
     public void SceneToMainTitle() // Option 창에 "메인화면" 버튼이랑 연결되어 있음
     {
+        if(gameoverPanel.activeSelf)
+        {
+            gameoverPanel.SetActive(false);
+        }
+
         TogglePause();
         SceneManager.LoadScene("Menu");
     }

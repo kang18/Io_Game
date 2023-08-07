@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Path;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Basic_test : Monster
 {
@@ -16,12 +12,6 @@ public class Basic_test : Monster
     public float yposition;
 
     public BoxCollider2D attackArea; // 공격 범위
-
-
-    private void Awake()
-    {
-      
-    }
 
     private void Update()
     {
@@ -46,13 +36,10 @@ public class Basic_test : Monster
         }
     }
 
-
     private void MoveMonster() // 좌측으로 이동하는 함수
     {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
-
-
 
     private void ScanFront() // 전방에 플레이어, 혹은 하우스가 있는 확인하는 함수
     {
@@ -74,8 +61,6 @@ public class Basic_test : Monster
         }
     }
 
-
-
     IEnumerator Attack()
     {
         isAttack = true;
@@ -83,17 +68,12 @@ public class Basic_test : Monster
         yield return new WaitForSeconds(1.5f);
         attackArea.enabled = true;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
 
         attackArea.enabled = false;
 
         isAttack = false;
     }
-
-
-
-
-
 
     IEnumerator Die()
     {
@@ -118,7 +98,3 @@ public class Basic_test : Monster
         Destroy(gameObject);
     }
 }
-
-
-
-

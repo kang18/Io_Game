@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5463684680496497343}
   - component: {fileID: 5463684680496497336}
   - component: {fileID: 5463684680496497337}
-  - component: {fileID: 5463684680496497338}
   m_Layer: 21
   m_Name: Flying
   m_TagString: Monster
@@ -30,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5463684680496497331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.53, y: -5.84, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5463684680784841509}
@@ -79,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 6991849013916550155, guid: b9517addf15136e47a89337d912454b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd3426e59f0a57e42acc46c1a5992ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,14 +127,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 6.15, y: 4.06}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.3}
+  m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
 --- !u!61 &5463684680496497336
 BoxCollider2D:
@@ -154,14 +153,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 6.15, y: 4.06}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.3}
+  m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &5463684680496497337
 MonoBehaviour:
@@ -179,7 +178,7 @@ MonoBehaviour:
   dmg: 0
   speed: 5
   dodie: 0
-  id: 1
+  id: 0
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   hitDuration: 0.1
   spawnManager: {fileID: 0}
@@ -190,27 +189,6 @@ MonoBehaviour:
   bulletSpeed: 15
   flyingBullet: {fileID: 2617243179527578592, guid: 59f9207f32eb82f41a616c04f15d2dda, type: 3}
   step: {fileID: 5463684680784841531}
---- !u!95 &5463684680496497338
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5463684680496497331}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42eda1ea588060441b45c3dacfdd81cf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5463684680784841531
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5463684680784841531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.477, z: 0}
+  m_LocalPosition: {x: 0.03, y: -4.35, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

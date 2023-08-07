@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Path;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Basic : Monster
 {
@@ -43,14 +40,11 @@ public class Basic : Monster
         }
     }
 
-
     private void MoveMonster() // 좌측으로 이동하는 함수
     {
         anim.SetBool("isWalk", true);
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
-
-
 
     private void ScanFront() // 전방에 플레이어, 혹은 하우스가 있는 확인하는 함수
     {
@@ -73,9 +67,6 @@ public class Basic : Monster
         }
     }
 
-
-
-
     IEnumerator Attack()
     {
         isAttack = true;
@@ -91,11 +82,6 @@ public class Basic : Monster
         isAttack = false;
         anim.SetBool("isAttack", false);
     }
-
-
-
-
-
 
     IEnumerator Die()
     {
@@ -120,7 +106,3 @@ public class Basic : Monster
         gameObject.SetActive(false);
     }
 }
-
-
-
-

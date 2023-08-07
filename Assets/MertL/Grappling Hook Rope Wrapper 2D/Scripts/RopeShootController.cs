@@ -41,7 +41,7 @@ namespace RopeWrapper
         //Shoot or Release the rope according to mouse input
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !isRopeShot && target.positionUpDown == false && !(target.isJump))
+            if (Input.GetKeyDown(KeyCode.Space) && !isRopeShot && target.positionUpDown == false && !(target.isJump) && !(target.isDamage))
                 ShootTheRope();
             else if (target.positionUpDown && isRopeShot)
                 ReleaseTheRope();
