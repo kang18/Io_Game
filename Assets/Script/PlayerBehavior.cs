@@ -205,7 +205,12 @@ public class PlayerBehavior : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
 
-        if(isDamage && !isRope)
+
+        if (isRope || isUnderJump)
+        {
+            gameObject.layer = LayerMask.NameToLayer("PlayerRope");
+        }
+        else if (isDamage && !isRope)
         {
             gameObject.layer = LayerMask.NameToLayer("PlayerOnDamage");
         }

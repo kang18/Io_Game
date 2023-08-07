@@ -9,7 +9,8 @@ public class FlyingMonster : Monster
     public float rayLength; // 감지 범위
     public float bulletSpeed; // 총알 날아가는 속도
 
-    public GameObject flyingBullet; // 발사할 총알 프리펩
+    public GameObject flyingBullet; // 발사할 음파 프리펩
+    public Transform flyingTransform; // 발사할 음파 위치
     public GameObject step; // 공중에 떠 있는 느낌을 주기 위한 발판
 
     //Animator anim;
@@ -49,7 +50,8 @@ public class FlyingMonster : Monster
     {
         float yOffset = -3.0f; // Y 좌표의 오프셋 값
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, yOffset, 0), Vector2.left, rayLength, LayerMask.GetMask("Player") | LayerMask.GetMask("House"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, yOffset, 0), Vector2.left,
+            rayLength, LayerMask.GetMask("Player") | LayerMask.GetMask("House") | LayerMask.GetMask("PlayerOnDamage"));
 
         Debug.DrawRay(transform.position + new Vector3(0, yOffset, 0), Vector2.left * rayLength, Color.red);
 
@@ -60,7 +62,7 @@ public class FlyingMonster : Monster
                 findAttack = true;
                 if (!isAttack)
                 {
-                    StartCoroutine(FireBullet(hit.point));
+                    StartCoroutine(FireSoundWave());
                 }
             }
         }
@@ -71,30 +73,61 @@ public class FlyingMonster : Monster
     }
 
 
-    IEnumerator FireBullet(Vector3 targetPosition)
+    //IEnumerator FireBullet(Vector3 targetPosition)
+    //{
+    //    //anim.SetBool("isAttack", true);
+
+    //    isAttack = true;
+    //    yield return new WaitForSeconds(0.7f);
+
+    //    // 발사할 총알 생성
+    //    GameObject bullet = Instantiate(flyingBullet, transform.position, Quaternion.identity);
+
+    //    // 총알의 방향 설정
+    //    Vector3 direction = (targetPosition - transform.position).normalized;
+
+
+    //    bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+    //    yield return new WaitForSeconds(0.2f);
+
+
+
+    //    //anim.SetBool("isAttack", false);
+    //    isAttack = false;
+    //    //yield return new WaitForSeconds(0.2f); // 공격 종료
+
+    //}
+
+
+    IEnumerator FireSoundWave()
     {
-        //anim.SetBool("isAttack", true);
         isAttack = true;
-        yield return new WaitForSeconds(0.7f);
 
-        // 발사할 총알 생성
-        GameObject bullet = Instantiate(flyingBullet, transform.position, Quaternion.identity);
+        while (findAttack)
+        {
+            // 발사할 총알 생성
+            GameObject bullet = Instantiate(flyingBullet, flyingTransform.position, Quaternion.identity);
 
-        // 총알의 방향 설정
-        Vector3 direction = (targetPosition - transform.position).normalized;
+            // 총알의 방향 설정 (정면 방향)
+            Vector3 direction = Vector3.left; // 혹은 원하는 정면 방향으로 설정
 
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+            yield return new WaitForSeconds(0.2f);
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
-        yield return new WaitForSeconds(0.2f);
-     
+            // 잠시 움직임
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            yield return new WaitForSeconds(0.8f);
+        }
 
-
-        //anim.SetBool("isAttack", false);
-
-        yield return new WaitForSeconds(0.2f);
-
-        isAttack = false; 
+        isAttack = false;
     }
+
+
+
+
+
+
+
 
     IEnumerator Die()
     {

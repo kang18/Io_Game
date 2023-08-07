@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  dmg: 20
+  touchdmg: 20
   speed: 8
   dodie: 0
   id: 0
