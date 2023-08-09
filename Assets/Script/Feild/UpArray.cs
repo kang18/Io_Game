@@ -30,6 +30,16 @@ public class UpArray : MonoBehaviour
                 playerMovement.positionUpDown = true;
             }
         }
+
+        if (other.CompareTag("Monster"))
+        {
+            Boss1 boss = other.gameObject.GetComponent<Boss1>();
+
+            if (boss != null)
+            {
+                boss.whereFloor = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -42,6 +52,16 @@ public class UpArray : MonoBehaviour
             {
                 playerMovement.positionUpDown = false;
                 playerMovement.isUnderJump = false;
+            }
+        }
+
+        if (other.CompareTag("Monster"))
+        {
+            Boss1 boss = other.gameObject.GetComponent<Boss1>();
+
+            if (boss != null)
+            {
+                boss.whereFloor = false;
             }
         }
     }

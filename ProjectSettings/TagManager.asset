@@ -11,6 +11,7 @@ TagManager:
   - Floor
   - UpArray
   - Gem
+  - Stalactite
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - House
   - 
   - 
-  - 
+  - Stalactite
   - Monster
   - MonsterAttack
   - MonsterStep
