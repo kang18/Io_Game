@@ -15,6 +15,7 @@ public class PlayerBehavior : MonoBehaviour
     public int dmg; // 공격력
     public bool isDamage; // 데미지를 입고 있는지
     public bool doDie; // 죽었는지 살았는지
+    public bool isStun; // 스턴된 상태인지 아닌지
 
     public float moveSpeed = 5f;  // 이동 스피드
     public float jumpForce = 5f;  // 점프력
@@ -131,13 +132,17 @@ public class PlayerBehavior : MonoBehaviour
 
     private void KeyInput()
     {
-        moveX = Input.GetAxisRaw("Horizontal");
-        movedown = Input.GetKey(KeyCode.DownArrow);
-        keyJump   = Input.GetButtonDown("Jump");
-        isAttack = Input.GetButton("Attack");
-        keySkilla = Input.GetKeyDown(KeyCode.Z);
-        keySkillb = Input.GetKeyDown(KeyCode.X);
-        keySkillc = Input.GetKeyDown(KeyCode.C);
+        if(!isStun)
+        {
+            moveX = Input.GetAxisRaw("Horizontal");
+            movedown = Input.GetKey(KeyCode.DownArrow);
+            keyJump = Input.GetButtonDown("Jump");
+            isAttack = Input.GetButton("Attack");
+            keySkilla = Input.GetKeyDown(KeyCode.Z);
+            keySkillb = Input.GetKeyDown(KeyCode.X);
+            keySkillc = Input.GetKeyDown(KeyCode.C);
+        }
+       
     }
 
     private void Move()
@@ -377,6 +382,19 @@ public class PlayerBehavior : MonoBehaviour
         iswhereSee = transform.localScale.x < 0;
     }
 
+
+
+
+    public IEnumerator Stun(float stunTime)
+    {
+        isStun = true;
+        moveX = 0;
+        rigid.velocity = Vector2.zero; // 움직임을 중지
+        GetComponent<Renderer>().material.color = Color.gray;
+        yield return new WaitForSeconds(stunTime);
+        isStun = false;
+        GetComponent<Renderer>().material.color = Color.white;
+    }
 
 
 

@@ -13,6 +13,7 @@ public class Boss1 : MonoBehaviour
     public bool isTargetOnRight;
     public int numberOfStalactitesToSpawn = 4;
     public int medusaDmg;
+    public float stunTime;
     public float jumpForce;
     public float jumpForceUnder;
 
@@ -107,11 +108,9 @@ public class Boss1 : MonoBehaviour
 
 
 
-
-
     private void MakeActiveNumber() // 랜덤 행동 난수 생성
     {
-        activeNumber = Random.Range(0, 7);
+        activeNumber = Random.Range(6, 7);
 
         // 0 - 왼쪽으로 이동
         // 1 - 오른쪽으로 이동
@@ -121,8 +120,6 @@ public class Boss1 : MonoBehaviour
         // 5 - 공격 3
         // 6 - 공격 4
     }
-
-
 
 
     private IEnumerator MoveRightCoroutine() // 오른쪽으로 이동하는 코루틴
@@ -382,7 +379,8 @@ public class Boss1 : MonoBehaviour
 
                 if (whereFloor == playerBehavior.positionUpDown && whereSee == playerBehavior.iswhereSee)
                 {
-                    playerBehavior.DecreaseHp(medusaDmg); // medusaDmg는 Medusa의 공격력이라고 가정
+                    playerBehavior.hp -= medusaDmg;
+                    StartCoroutine(playerBehavior.Stun(stunTime));
                 }
             }
         }
