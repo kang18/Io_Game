@@ -19,6 +19,7 @@ public class WhiteScreenBomb : MonoBehaviour
         {
             // Get the Monster script component from the colliding object
             Monster monsterScript = other.GetComponent<Monster>();
+            Boss1 boss = other.GetComponent<Boss1>();
 
             // Check if the Monster script component is not null
             if (monsterScript != null)
@@ -26,6 +27,13 @@ public class WhiteScreenBomb : MonoBehaviour
                 monsterScript.StartCoroutine("OnDamage");
                 monsterScript.hp -= dmg;
             }
+
+            if (boss != null)
+            {
+                boss.hp -= dmg;
+            }
         }
+
+       
     }
 }

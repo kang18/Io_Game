@@ -47,23 +47,19 @@ public class Boss1 : MonoBehaviour
     int randomPosition4;
     public GameObject[] medusaEye;
 
-
     Animator anim;
     Rigidbody2D rigid;
-
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        StartCoroutine(MoveLeftCoroutine());
     }
-
-
 
     private void Update()
     {
         UpdateLayer();
-
 
         if (!isActive)
         {
@@ -121,9 +117,9 @@ public class Boss1 : MonoBehaviour
         // 1 - 오른쪽으로 이동
         // 2 - 점프 || 하단 점프
         // 3 - 공격 1
-        // 4 - 공격 1
-        // 5 - 공격 1
-        // 6 - 공격 1
+        // 4 - 공격 2
+        // 5 - 공격 3
+        // 6 - 공격 4
     }
 
 
