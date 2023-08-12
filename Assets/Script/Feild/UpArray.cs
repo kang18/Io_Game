@@ -62,6 +62,7 @@ public class UpArray : MonoBehaviour
             if (boss != null)
             {
                 boss.whereFloor = false;
+                boss.isUnderJump = false;
             }
         }
     }

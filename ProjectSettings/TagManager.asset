@@ -37,7 +37,7 @@ TagManager:
   - Monster
   - MonsterAttack
   - MonsterStep
-  - 
+  - MonsterRope
   - RopeWrapLayer
   - 
   - Rope

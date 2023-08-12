@@ -15,7 +15,16 @@ public class Floor : MonoBehaviour
             playerMovement.isJump = false; 
         }
 
-       
+
+        Boss1 boss = collision.gameObject.GetComponent<Boss1>();
+        if (boss != null)
+        {
+            // isJump 상태를 false로 변경
+            boss.isJump = false;
+        }
+
+
+
 
         JumpMonster jumpMonster = collision.gameObject.GetComponent<JumpMonster>();
         if (jumpMonster != null)

@@ -5723,6 +5723,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1299785598}
+  - {fileID: 1397896911}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7577,6 +7578,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 5
   dmgCollider: {fileID: 1391853786}
+--- !u!1 &1397896910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1397896911}
+  m_Layer: 0
+  m_Name: MovePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1397896911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397896910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092650987}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419650183
 GameObject:
   m_ObjectHideFlags: 0
@@ -7839,6 +7871,7 @@ MonoBehaviour:
   isRope: 0
   isUnderJump: 0
   positionUpDown: 0
+  iswhereSee: 0
   bulletPosition: {fileID: 607114086}
   bullet:
   - {fileID: 1185626196324657661, guid: ca70f3092b9e5af45bf29bde2362b778, type: 3}
@@ -8091,8 +8124,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498037476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.06, y: 5.39, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalPosition: {x: 13.96, y: 7.23, z: 0}
+  m_LocalScale: {x: 3.4, y: 3.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1717948514}
@@ -8115,11 +8148,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1000
   touchDmg: 30
-  speed: 5
+  speed: 12
   dodie: 0
   whereFloor: 0
+  whereSee: 0
+  isTargetOnRight: 0
   numberOfStalactitesToSpawn: 4
   medusaDmg: 20
+  jumpForce: 17
+  jumpForceUnder: 2
+  minX: -20
+  isminX: 0
+  maxX: 20
+  ismaxX: 0
+  isJump: 0
+  isUnderJump: 0
+  activeNumber: 0
   isActive: 0
   isBress: 0
   isSnakeAttack: 0
@@ -9854,7 +9898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748965657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.039, y: -0.041, z: 0}
+  m_LocalPosition: {x: 0.039, y: -0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.023152582, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

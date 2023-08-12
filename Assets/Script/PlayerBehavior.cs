@@ -35,6 +35,7 @@ public class PlayerBehavior : MonoBehaviour
     public bool isRope; // 로프를 타고 있는지
     public bool isUnderJump; // 하향 점프 하고 있는지
     public bool positionUpDown; // 지금 상단에 있는지 하단에 있는지
+    public bool iswhereSee; // 플레이어가 어느 방향을 보고 있는지
 
     private bool isSkillb = false; // 2번 스킬 사용중인지 아닌지
     private bool isSkillc = false; // 3번 스킬 사용중인지 아닌지
@@ -370,6 +371,11 @@ public class PlayerBehavior : MonoBehaviour
         renderer.material.color = color;
     }
 
+
+    public void SeeUpdate()
+    {
+        iswhereSee = transform.localScale.x < 0;
+    }
 
 
 

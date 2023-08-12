@@ -13,8 +13,20 @@ public class Boss1 : MonoBehaviour
     public bool isTargetOnRight;
     public int numberOfStalactitesToSpawn = 4;
     public int medusaDmg;
+    public float jumpForce;
+    public float jumpForceUnder;
 
- 
+    public int minX; // 최대 좌측 X 값
+    public bool isminX; // 현재 최대한 좌측에 있는지에 따른 bool 값
+    public int maxX; // 최대 좌측 X 값
+    public bool ismaxX; // 현재 최대한 좌측에 있는지에 따른 bool 값
+    public bool isJump; // 점프하고 있는지
+    public bool isUnderJump; // 하향점프하고 있는지
+
+
+
+
+    public int activeNumber; // 어떤 행동을 할 것인지에 대한 랜덤 번호
     public bool isActive; // 행동이 겹치지 않도록
     public bool isBress;
     public bool isSnakeAttack;
@@ -37,20 +49,212 @@ public class Boss1 : MonoBehaviour
 
 
     Animator anim;
+    Rigidbody2D rigid;
 
+
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
 
 
 
     private void Update()
     {
-        anim = GetComponent<Animator>();
-        SeeUpdate();
+        UpdateLayer();
 
-        if (!isMedusa)
+
+        if (!isActive)
         {
-            StartCoroutine(Medusa());
+            MakeActiveNumber();
+
+            switch (activeNumber)
+            {
+                case 0:
+                    StartCoroutine(MoveRightCoroutine());
+                    break;
+                case 1:
+                    StartCoroutine(MoveLeftCoroutine());
+                    break;
+                case 2:
+                    if (whereFloor)
+                    {
+                        StartCoroutine(JumpToUnder());
+                        break;
+                    }
+                    else
+                    {
+                        StartCoroutine(JumpToUpArray());
+                        break;
+                    }
+                case 3:
+                    StartCoroutine(SnakeAttack());
+                    break;
+                case 4:
+                    StartCoroutine(Bress());
+                    break;
+                case 5:
+                    StartCoroutine(SpawnStalactites());
+                    break;
+                case 6:
+                    StartCoroutine(Medusa());
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+    }
+
+
+
+
+
+    private void MakeActiveNumber() // 랜덤 행동 난수 생성
+    {
+        activeNumber = Random.Range(0, 7);
+
+        // 0 - 왼쪽으로 이동
+        // 1 - 오른쪽으로 이동
+        // 2 - 점프 || 하단 점프
+        // 3 - 공격 1
+        // 4 - 공격 1
+        // 5 - 공격 1
+        // 6 - 공격 1
+    }
+
+
+
+
+    private IEnumerator MoveRightCoroutine() // 오른쪽으로 이동하는 코루틴
+    {
+        isActive = true;
+
+        float moveDuration = Random.Range(0f, 3f);
+        float elapsedTime = 0.0f;
+
+        transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+        while (elapsedTime < moveDuration)
+        {
+            if (ismaxX)
+            {
+                isActive = false;
+                yield break;
+            }
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            JudgmentTransform();
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+
+        yield return new WaitForSeconds(1f);
+        isActive = false;
+    }
+
+    private IEnumerator MoveLeftCoroutine() // 왼쪽으로 이동하는 코루틴
+    {
+        isActive = true;
+
+        float moveDuration = Random.Range(0f, 3f);
+        float elapsedTime = 0.0f;
+
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+        while (elapsedTime < moveDuration)
+        {
+            if (isminX)
+            {
+                isActive = false;
+                yield break;
+            }
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            JudgmentTransform();
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        isActive = false;
+    }
+
+    private void JudgmentTransform()
+    {
+        if (transform.position.x <= minX)
+        {
+            isminX = true;
+        }
+        else
+        {
+            isminX = false;
+        }
+
+        if (transform.position.x >= maxX)
+        {
+            ismaxX = true;
+        }
+        else
+        {
+            ismaxX = false;
+        }
+    }// 현재 위치가 최좌우측 끝인지 판단하는 함수
+
+    IEnumerator JumpToUpArray()
+    {
+        isActive = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        isJump = true;
+        rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.9f);
+
+        isJump = false;
+
+        yield return new WaitForSeconds(2f);
+
+        isActive = false;
+
+
+    } // 상단 점프
+
+    IEnumerator JumpToUnder() // 하단 점프
+    {
+        isActive = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        isJump = true;
+        isUnderJump = true;
+        rigid.AddForce(Vector3.up * jumpForceUnder, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(3f);
+
+        isActive = false;
+    }
+
+
+
+
+    private void UpdateLayer()
+    {
+        if(isJump || isUnderJump)
+        {
+            gameObject.layer = LayerMask.NameToLayer("MonsterRope");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Monster");
         }
     }
+
 
 
 
@@ -73,7 +277,6 @@ public class Boss1 : MonoBehaviour
         isActive = false;
         isSnakeAttack = false;
     }
-
 
     IEnumerator Bress() // 나중에 애니메이션에 맞춰서 코루틴 타이밍 수정해야 함
     {
@@ -128,8 +331,7 @@ public class Boss1 : MonoBehaviour
         isActive = false;
         isStalactite = false;
     }
-
-    private void RandomPositionCount()
+    private void RandomPositionCount() // 종유석이 떨어질 랜덤 포인트 4곳 지정
     {
         randomPosition1 = Random.Range(0, 11);
         randomPosition2 = Random.Range(0, 11);
@@ -153,8 +355,6 @@ public class Boss1 : MonoBehaviour
         Debug.Log(randomPosition3);
         Debug.Log(randomPosition4);
     }
-
-
 
     IEnumerator Medusa()
     {
@@ -180,7 +380,11 @@ public class Boss1 : MonoBehaviour
 
             if (playerBehavior != null)
             {
-                if (whereFloor == playerBehavior.positionUpDown)
+                // 보스와 플레이어가 바라보고 있는 방향에 따라 bool 값 수정
+                SeeUpdate();
+                playerBehavior.SeeUpdate();
+
+                if (whereFloor == playerBehavior.positionUpDown && whereSee == playerBehavior.iswhereSee)
                 {
                     playerBehavior.DecreaseHp(medusaDmg); // medusaDmg는 Medusa의 공격력이라고 가정
                 }
@@ -196,12 +400,10 @@ public class Boss1 : MonoBehaviour
         isMedusa = false;
         isActive = false;
     }
-
     private void SeeUpdate()
     {
         whereSee = transform.localScale.x < 0;
     }
-
     private bool IsPlayerOnRight()
     {
         Vector3 playerDirection = player.transform.position - transform.position;
@@ -216,11 +418,6 @@ public class Boss1 : MonoBehaviour
         }
     }
 
-
-
-
-
-
     private void FlipTowardsPlayerDirection() // 플레이어가 있는 방향으로 좌우반전하는 함수
     {
         Vector3 playerDirection = player.transform.position - transform.position;
@@ -234,10 +431,6 @@ public class Boss1 : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
-
-
-
-
 
 
     public SpawnManager spawnManager; // SpawnManager 스크립트의 참조를 저장할 변수
