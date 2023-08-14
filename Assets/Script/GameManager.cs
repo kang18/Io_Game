@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject soundPanel;
     public GameObject gameoverPanel;
 
+    public Boss1 boss;
     public GameObject bossPattern;
     public GameObject[] bossEye;
 
@@ -35,8 +36,6 @@ public class GameManager : MonoBehaviour
 
 
         bossPattern.SetActive(false);
-        bossEye[0].SetActive(false);
-        bossEye[1].SetActive(false);
     }
 
 
@@ -78,9 +77,14 @@ public class GameManager : MonoBehaviour
 
         if (GameObject.Find("Boss(Clone)") != null)
         {
-            bossPattern.SetActive(true);
-            bossEye[0].SetActive(true);
-            bossEye[1].SetActive(true);
+            GameObject bossObject = GameObject.Find("Boss(Clone)");
+            boss = bossObject.GetComponent<Boss1>();
+            if (boss != null)
+            {
+                boss.medusaEye[0] = bossEye[0];
+                boss.medusaEye[1] = bossEye[1];
+                bossPattern.SetActive(true);
+            }
         }
     }
 
