@@ -36,6 +36,7 @@ public class Boss1 : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject pattren;
     public GameObject bressUp;
     public GameObject bressDown;
     public GameObject snakeAttack;
@@ -56,6 +57,53 @@ public class Boss1 : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         StartCoroutine(MoveLeftCoroutine());
+
+        Invoke("ActivateBoss", 2f);
+    }
+
+    private void ActivateBoss()
+    {
+        player = GameObject.FindWithTag("Player");
+        pattren = GameObject.Find("BossPattern");
+
+
+        stalactitePosition[0] = GameObject.Find("Position_1").transform;
+        stalactitePosition[1] = GameObject.Find("Position_2").transform;
+        stalactitePosition[2] = GameObject.Find("Position_3").transform;
+        stalactitePosition[3] = GameObject.Find("Position_4").transform;
+        stalactitePosition[4] = GameObject.Find("Position_5").transform;
+        stalactitePosition[5] = GameObject.Find("Position_6").transform;
+        stalactitePosition[6] = GameObject.Find("Position_7").transform;
+        stalactitePosition[7] = GameObject.Find("Position_8").transform;
+        stalactitePosition[8] = GameObject.Find("Position_9").transform;
+        stalactitePosition[9] = GameObject.Find("Position_10").transform;
+        stalactitePosition[10] = GameObject.Find("Position_11").transform;
+
+        stalactiteAlrm[0] = GameObject.Find("Position_1_alrm");
+        stalactiteAlrm[1] = GameObject.Find("Position_2_alrm");
+        stalactiteAlrm[2] = GameObject.Find("Position_3_alrm");
+        stalactiteAlrm[3] = GameObject.Find("Position_4_alrm");
+        stalactiteAlrm[4] = GameObject.Find("Position_5_alrm");
+        stalactiteAlrm[5] = GameObject.Find("Position_6_alrm");
+        stalactiteAlrm[6] = GameObject.Find("Position_7_alrm");
+        stalactiteAlrm[7] = GameObject.Find("Position_8_alrm");
+        stalactiteAlrm[8] = GameObject.Find("Position_9_alrm");
+        stalactiteAlrm[9] = GameObject.Find("Position_10_alrm");
+        stalactiteAlrm[10] = GameObject.Find("Position_11_alrm");
+
+
+
+        foreach (GameObject stalactite in stalactiteAlrm)
+        {
+            stalactite.SetActive(false);
+            SpriteRenderer spriteRenderer3 = stalactite.GetComponent<SpriteRenderer>();
+            if (spriteRenderer3 != null)
+            {
+                Color color = spriteRenderer3.color;
+                color.a = 1.0f;
+                spriteRenderer3.color = color;
+            }
+        }
     }
 
     private void Update()
@@ -114,7 +162,7 @@ public class Boss1 : MonoBehaviour
 
         // 0 - 왼쪽으로 이동
         // 1 - 오른쪽으로 이동
-        // 2 - 점프 || 하단 점프
+        // 2 - 점프 || 하단 점프  (위층에 있는지 아래층에 있는지에 따라 행동 결정)
         // 3 - 공격 1
         // 4 - 공격 2
         // 5 - 공격 3

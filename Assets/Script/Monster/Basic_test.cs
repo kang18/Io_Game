@@ -13,6 +13,15 @@ public class Basic_test : Monster
 
     public BoxCollider2D attackArea; // 공격 범위
 
+    // # 애니메이션 관련 변수
+    Animator anim;
+    private bool originalIsWalk;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         if (hp <= 0 && !dodie)
@@ -38,6 +47,7 @@ public class Basic_test : Monster
 
     private void MoveMonster() // 좌측으로 이동하는 함수
     {
+        anim.SetBool("isWalk", true);
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
@@ -52,32 +62,50 @@ public class Basic_test : Monster
         {
             if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("House"))
             {
+                anim.SetBool("isWalk", false);
                 findAttack = true;
             }
         }
         else
         {
             findAttack = false;
+            if(!isAttack)
+            {
+                anim.SetBool("isWalk", true);
+            }
         }
     }
 
     IEnumerator Attack()
     {
         isAttack = true;
+        anim.SetBool("isAttack", true);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.2f);
         attackArea.enabled = true;
 
         yield return new WaitForSeconds(0.1f);
 
         attackArea.enabled = false;
 
+
+        yield return new WaitForSeconds(0.55f);
+
+        anim.SetBool("isAttack", false);
+
+        yield return new WaitForSeconds(2f);
+
         isAttack = false;
+        
     }
+
+
+  
 
     IEnumerator Die()
     {
         dodie = true;
+        anim.SetTrigger("doDie");
 
         // 콜라이더 비활성화
         Collider2D collider = GetComponent<Collider2D>();
@@ -89,12 +117,15 @@ public class Basic_test : Monster
         rigidbody.angularVelocity = 0f;
         rigidbody.simulated = false;
 
-        yield return new WaitForSeconds(1.15f);
+        yield return new WaitForSeconds(0.7f);
+        anim.enabled = false;
         if (Random.Range(0f, 100f) <= 30f)
         {
             GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
         }
 
+
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

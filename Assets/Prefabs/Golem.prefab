@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 8690310754770013782}
   - component: {fileID: 8690310754770013777}
   - component: {fileID: 8690310754770013776}
+  - component: {fileID: 8861554945366524054}
   m_Layer: 21
-  m_Name: Golem_incomplete
+  m_Name: Golem
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,6 +190,27 @@ MonoBehaviour:
   xposition: 3
   yposition: 3.5
   attackArea: {fileID: 8690310756517092291}
+--- !u!95 &8861554945366524054
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690310754770013786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23eab6d707e15ff45bfea3d1614a1264, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8690310756517092294
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +321,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.2, y: 7.39}
+  m_Size: {x: 4, y: 7.39}
   m_EdgeRadius: 0
 --- !u!114 &8690310756517092288
 MonoBehaviour:

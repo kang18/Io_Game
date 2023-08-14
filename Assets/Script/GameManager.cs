@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public GameObject soundPanel;
     public GameObject gameoverPanel;
 
+    public GameObject bossPattern;
+    public GameObject[] bossEye;
+
 
     private void Awake()
     {
@@ -29,6 +32,11 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+
+        bossPattern.SetActive(false);
+        bossEye[0].SetActive(false);
+        bossEye[1].SetActive(false);
     }
 
 
@@ -63,11 +71,16 @@ public class GameManager : MonoBehaviour
 
 
 
-
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause(); 
+        }
+
+        if (GameObject.Find("Boss(Clone)") != null)
+        {
+            bossPattern.SetActive(true);
+            bossEye[0].SetActive(true);
+            bossEye[1].SetActive(true);
         }
     }
 
