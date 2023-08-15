@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     public int catchMonsters; // 잡은 몬스터 수
     public bool waveClear; // 해당 Wave를 클리어 했는지 판단
-    
+
     public GameObject[] Monsters; // 몬스터를 담을 배열
     public Transform[] spawnPositionUpDown; // 위층 아래층
 
@@ -77,12 +77,12 @@ public class SpawnManager : MonoBehaviour
         // #1.변수 초기화
         spawnList.Clear(); // 텍스트 파일을 읽기 전 리스트를 초기화
         spawnIndex = 0; // 첫번째부터 읽어야 하니까
-        
+
         // #2.변수 초기화
         TextAsset textFile = Resources.Load("Wave" + waveCnt) as TextAsset; // as TextAsset를 추가해줌으로써 텍스트 파일이 맞는지 아닌지 한 번 더 검증
         StringReader stringReader = new StringReader(textFile.text);
 
-        while(stringReader != null)
+        while (stringReader != null)
         {
             string line = stringReader.ReadLine(); // 텍스트 데이터를 한 줄씩 반환하는 함수
             Debug.Log(line);
@@ -129,6 +129,10 @@ public class SpawnManager : MonoBehaviour
             case "Stone":
                 enemyIndex = 3;
                 break;
+
+            case "Boss":
+                enemyIndex = 4;
+                break;
         }
 
         int enemyPoint = spawnList[spawnIndex].point;
@@ -137,7 +141,7 @@ public class SpawnManager : MonoBehaviour
 
         // #.리스폰 인덱스 증가
         spawnIndex++;
-        if(spawnIndex == spawnList.Count)
+        if (spawnIndex == spawnList.Count)
         {
             spawnEnd = true;
             return;

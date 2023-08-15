@@ -1,4 +1,1 @@
 10,Basic,1
-10,Basic,0
-10,Basic,1
-10,Flying,1
