@@ -12,6 +12,7 @@ TagManager:
   - UpArray
   - Gem
   - Stalactite
+  - DownFloor
   layers:
   - Default
   - TransparentFX

@@ -158,7 +158,7 @@ public class Boss1 : MonoBehaviour
 
     private void MakeActiveNumber() // 랜덤 행동 난수 생성
     {
-        activeNumber = Random.Range(0, 7);
+        activeNumber = Random.Range(5, 6);
 
         // 0 - 왼쪽으로 이동
         // 1 - 오른쪽으로 이동

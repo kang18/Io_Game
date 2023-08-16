@@ -24,6 +24,15 @@ public class Stalactite : MonoBehaviour
         }
     }
 
+
+    private void StalactiteBomb()
+    {
+
+    }
+
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -35,6 +44,11 @@ public class Stalactite : MonoBehaviour
                 playerBehavior.DecreaseHp(dmg);
             }
 
+        }
+
+        if (collision.gameObject.CompareTag("DownFloor"))
+        {
+            StalactiteBomb();
         }
     }
 

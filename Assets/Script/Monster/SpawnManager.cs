@@ -78,6 +78,7 @@ public class SpawnManager : MonoBehaviour
         spawnList.Clear(); // 텍스트 파일을 읽기 전 리스트를 초기화
         spawnIndex = 0; // 첫번째부터 읽어야 하니까
 
+
         // #2.변수 초기화
         TextAsset textFile = Resources.Load("Wave" + waveCnt) as TextAsset; // as TextAsset를 추가해줌으로써 텍스트 파일이 맞는지 아닌지 한 번 더 검증
         StringReader stringReader = new StringReader(textFile.text);
