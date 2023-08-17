@@ -14,10 +14,11 @@ public class Menu_GameManager : MonoBehaviour
     public GameObject stagePanel;
 
 
+
+
+
     public void Update()
     {
-
-
         if (Input.GetButtonDown("Cancel"))
         {
             if(soundPanel.activeSelf)

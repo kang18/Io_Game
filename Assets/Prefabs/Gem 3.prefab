@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6852996256744770777}
   - component: {fileID: 1821936590289287571}
   m_Layer: 30
-  m_Name: Gem
+  m_Name: Gem 3
   m_TagString: Gem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: a3ba5d3e822adde45a00a8a67ec04dca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71d46b459f695b044a87ff376d6bcac3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.67}
+    oldSize: {x: 1.44, y: 1.22}
     newSize: {x: 2.46, y: 2.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.67}
+    oldSize: {x: 1.44, y: 1.22}
     newSize: {x: 2.46, y: 2.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

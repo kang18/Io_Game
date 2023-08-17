@@ -32,6 +32,8 @@ public class SoundManager : MonoBehaviour
             float buttonVolume = PlayerPrefs.GetFloat("ButtonVolume_original");
             sound_Button.volume = buttonVolume;
         }
+        
+        LoadSoundSettings();
 
         muteToggle.isOn = isMute;
         originalBGMVolume = sound_BGM.volume;
@@ -59,6 +61,7 @@ public class SoundManager : MonoBehaviour
             PlayerPrefs.SetFloat("BGMVolume_original", sound_BGM.volume);
             PlayerPrefs.SetFloat("ButtonVolume_original", sound_Button.volume);
 
+
             sound_BGM.volume = 0f;  
             sound_Button.volume = 0f;
             musicVolumeSlider.value = 0f;
@@ -79,13 +82,11 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void OnSoundButton() // 버튼 클릭시 사운드 재생
-    {
-        sound_Button.Play();
-    }
+   
 
     public void SaveSoundSettings()
     {
+
         PlayerPrefs.SetFloat("BGMVolume", sound_BGM.volume);
         PlayerPrefs.SetFloat("ButtonVolume", sound_Button.volume);
     }
@@ -105,5 +106,17 @@ public class SoundManager : MonoBehaviour
             sound_Button.volume = buttonVolume;
             effectVolumeSlider.value = buttonVolume;
         }
+    }
+
+
+
+
+
+
+
+
+    public void OnSoundButton() // 버튼 클릭시 사운드 재생
+    {
+        sound_Button.Play();
     }
 }

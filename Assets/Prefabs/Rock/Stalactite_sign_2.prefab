@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7514438653134719640}
   - component: {fileID: 7514438653134719639}
-  - component: {fileID: 7514438653134719638}
   - component: {fileID: 7514438653134719637}
   - component: {fileID: 7514438653134719641}
+  - component: {fileID: 1585334780583246065}
   m_Layer: 20
   m_Name: Stalactite_sign_2
   m_TagString: Stalactite
@@ -87,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7514438653134719638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7514438653134719636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3791fd2f041b4c4bae33fd5872c3fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 20
-  downSpeed: 0.1
 --- !u!50 &7514438653134719637
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +148,17 @@ PolygonCollider2D:
       - {x: 0.195, y: -0.42}
       - {x: 0.275, y: -0.29}
       - {x: 0.275, y: -0.17999999}
+--- !u!114 &1585334780583246065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7514438653134719636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ac2dd69325bd04bb55abe52bb7392d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0
+  downSpeed: 0.1

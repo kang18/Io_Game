@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Boss1 boss;
     public GameObject bossPattern;
     public GameObject[] bossEye;
+    public SoundManager soundManager;
 
 
     private void Awake()
@@ -169,6 +170,7 @@ public class GameManager : MonoBehaviour
         }
 
         TogglePause();
+        soundManager.SaveSoundSettings();
         SceneManager.LoadScene("Menu");
     }
 

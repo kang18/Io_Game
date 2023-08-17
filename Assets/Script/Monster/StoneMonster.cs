@@ -51,7 +51,8 @@ public class StoneMonster : Monster
         yield return new WaitForSeconds(1f);
         if (Random.Range(0f, 100f) <= 30f)
         {
-            GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
+            int randomIndex = Random.Range(0, gem.Length); // 랜덤한 인덱스 선택
+            GameObject newObj = Instantiate(gem[randomIndex], transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject); // 오브젝트 삭제

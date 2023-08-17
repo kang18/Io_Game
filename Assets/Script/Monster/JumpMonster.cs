@@ -201,7 +201,8 @@ public class JumpMonster : Monster
         yield return new WaitForSeconds(1.15f);
         if (Random.Range(0f, 100f) <= 30f)
         {
-            GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
+            int randomIndex = Random.Range(0, gem.Length); // ·£´ýÇÑ ÀÎµ¦½º ¼±ÅÃ
+            GameObject newObj = Instantiate(gem[randomIndex], transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }

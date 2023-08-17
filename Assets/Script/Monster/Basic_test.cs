@@ -119,9 +119,10 @@ public class Basic_test : Monster
 
         yield return new WaitForSeconds(0.7f);
         anim.enabled = false;
-        if (Random.Range(0f, 100f) <= 30f)
+        if (Random.Range(0f, 100f) <= 100f) //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         {
-            GameObject newObj = Instantiate(gem, transform.position, Quaternion.identity);
+            int randomIndex = Random.Range(0, gem.Length); // ·£´ýÇÑ ÀÎµ¦½º ¼±ÅÃ
+            GameObject newObj = Instantiate(gem[randomIndex], transform.position, Quaternion.identity);
         }
 
 

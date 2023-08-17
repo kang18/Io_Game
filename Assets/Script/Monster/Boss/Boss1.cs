@@ -36,11 +36,15 @@ public class Boss1 : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject[] gem;
     public GameObject pattren;
     public GameObject bressUp;
     public GameObject bressDown;
     public GameObject snakeAttack;
     public GameObject stalactite;
+    public GameObject stalactite_smallrock_1;
+    public GameObject stalactite_smallrock_2;
+    public GameObject stalactite_smallrock_3;
     public Transform[] stalactitePosition;
     public GameObject[] stalactiteAlrm;
     int randomPosition1;
@@ -353,7 +357,48 @@ public class Boss1 : MonoBehaviour
         stalactiteAlrm[randomPosition3].SetActive(true);
         stalactiteAlrm[randomPosition4].SetActive(true);
 
-        yield return new WaitForSeconds(1.2f);
+
+        yield return new WaitForSeconds(0.1f);
+        Vector3 newPosition_1 = stalactitePosition[randomPosition1].position;
+        Vector3 newPosition_2 = stalactitePosition[randomPosition2].position;
+        Vector3 newPosition_3 = stalactitePosition[randomPosition3].position;
+        Vector3 newPosition_4 = stalactitePosition[randomPosition4].position;
+        newPosition_1.x -= 1f; // 왼쪽으로 1만큼 이동
+        newPosition_2.x -= 1f; // 왼쪽으로 1만큼 이동
+        newPosition_3.x -= 1f; // 왼쪽으로 1만큼 이동
+        newPosition_4.x -= 1f; // 왼쪽으로 1만큼 이동
+        GameObject stalactite_Smallrock_1_1 = Instantiate(stalactite_smallrock_1, newPosition_1, Quaternion.identity);
+        GameObject stalactite_Smallrock_1_2 = Instantiate(stalactite_smallrock_1, newPosition_2, Quaternion.identity);
+        GameObject stalactite_Smallrock_1_3 = Instantiate(stalactite_smallrock_1, newPosition_3, Quaternion.identity);
+        GameObject stalactite_Smallrock_1_4 = Instantiate(stalactite_smallrock_1, newPosition_4, Quaternion.identity);
+
+
+
+        yield return new WaitForSeconds(0.2f);
+        newPosition_1.x += 1.2f; 
+        newPosition_2.x += 1.2f;
+        newPosition_3.x += 1.2f; 
+        newPosition_4.x += 1.2f;
+        GameObject stalactite_Smallrock_2_1 = Instantiate(stalactite_smallrock_2, newPosition_1, Quaternion.identity);
+        GameObject stalactite_Smallrock_2_2 = Instantiate(stalactite_smallrock_2, newPosition_2, Quaternion.identity);
+        GameObject stalactite_Smallrock_2_3 = Instantiate(stalactite_smallrock_2, newPosition_3, Quaternion.identity);
+        GameObject stalactite_Smallrock_2_4 = Instantiate(stalactite_smallrock_2, newPosition_4, Quaternion.identity);
+
+
+        yield return new WaitForSeconds(0.1f);
+        newPosition_1.x -= 0.2f;
+        newPosition_2.x -= 0.2f;
+        newPosition_3.x -= 0.2f;
+        newPosition_4.x -= 0.2f;
+        GameObject stalactite_Smallrock_3_1 = Instantiate(stalactite_smallrock_3, newPosition_1, Quaternion.identity);
+        GameObject stalactite_Smallrock_3_2 = Instantiate(stalactite_smallrock_3, newPosition_2, Quaternion.identity);
+        GameObject stalactite_Smallrock_3_3 = Instantiate(stalactite_smallrock_3, newPosition_3, Quaternion.identity);
+        GameObject stalactite_Smallrock_3_4 = Instantiate(stalactite_smallrock_3, newPosition_4, Quaternion.identity);
+
+
+
+
+        yield return new WaitForSeconds(1.4f);
 
         GameObject stalactite_1 = Instantiate(stalactite, stalactitePosition[randomPosition1].position, Quaternion.identity);
         GameObject stalactite_2 = Instantiate(stalactite, stalactitePosition[randomPosition2].position, Quaternion.identity);
@@ -482,6 +527,12 @@ public class Boss1 : MonoBehaviour
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
         if (collision.gameObject.CompareTag("Bullet") && !dodie)
         {
+            if (Random.Range(0f, 100f) <= 5f) 
+            {
+                int randomIndex = Random.Range(0, gem.Length); // 랜덤한 인덱스 선택
+                GameObject newObj = Instantiate(gem[randomIndex], transform.position, Quaternion.identity);
+            }
+
             hp -= bullet.dmg;
             if (hp < 0)
             {

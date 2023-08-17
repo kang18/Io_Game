@@ -17,7 +17,8 @@ public class Monster : MonoBehaviour
     private Color originalColor;
 
     public SpawnManager spawnManager; // SpawnManager 스크립트의 참조를 저장할 변수
-    public GameObject gem;
+    public GameObject[] gem;
+
 
     private void Awake()
     {

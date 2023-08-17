@@ -380,11 +380,18 @@ MonoBehaviour:
   isStalactite: 0
   isMedusa: 0
   player: {fileID: 0}
+  gem:
+  - {fileID: 2263181793565373403, guid: 2d546fa288d8d5c4a98de15086777bfc, type: 3}
+  - {fileID: 2263181793565373403, guid: 918dd22fd89b25a459e6352ac1c10cfc, type: 3}
+  - {fileID: 2263181793565373403, guid: 3aab4a7bb225d5f4db41accd257f1fbc, type: 3}
   pattren: {fileID: 0}
   bressUp: {fileID: 2916535273277281753}
   bressDown: {fileID: 2916535271709741576}
   snakeAttack: {fileID: 2916535271604112863}
   stalactite: {fileID: 4734531837926558825, guid: 1d3ca455dec164d44a74a024ab861dc5, type: 3}
+  stalactite_smallrock_1: {fileID: 2062980941692355004, guid: a321dd2b9377aab43a5ed8b0b91bce5f, type: 3}
+  stalactite_smallrock_2: {fileID: 7514438653134719636, guid: 9b7f96bf82fd8c348bd3fb4e65035d14, type: 3}
+  stalactite_smallrock_3: {fileID: 3791026199640519195, guid: dd855ce38e9452e429690c3f818bf56b, type: 3}
   stalactitePosition:
   - {fileID: 0}
   - {fileID: 0}

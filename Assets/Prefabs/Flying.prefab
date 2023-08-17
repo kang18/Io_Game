@@ -183,7 +183,10 @@ MonoBehaviour:
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   hitDuration: 0.1
   spawnManager: {fileID: 0}
-  gem: {fileID: 2263181793565373403, guid: 2d546fa288d8d5c4a98de15086777bfc, type: 3}
+  gem:
+  - {fileID: 2263181793565373403, guid: 2d546fa288d8d5c4a98de15086777bfc, type: 3}
+  - {fileID: 2263181793565373403, guid: 918dd22fd89b25a459e6352ac1c10cfc, type: 3}
+  - {fileID: 2263181793565373403, guid: 3aab4a7bb225d5f4db41accd257f1fbc, type: 3}
   findAttack: 0
   isAttack: 0
   rayLength: 9

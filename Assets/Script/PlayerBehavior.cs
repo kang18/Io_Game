@@ -44,7 +44,7 @@ public class PlayerBehavior : MonoBehaviour
     private Rigidbody2D rigid;
     public Transform bulletPosition;
     public GameObject[] bullet; // 총알 프리팹 담을 배열
-    public GameObject gemBomb; // 스킬 1번에 사용될 프리팹
+    public GameObject[] gemBomb; // 스킬 1번에 사용될 프리팹
     public GameObject laserTrajectory; // 스킬 2번에 사용될 프리팹
     public GameObject laserBeam; // 스킬 2번에 사용될 프리팹
     public BoxCollider2D laserCollider; // 스킬 2번에 사용될 프리팹
@@ -281,7 +281,9 @@ public class PlayerBehavior : MonoBehaviour
 
     private void ThrowGemBomb() // Skill 1번
     {
-        GameObject shotBullet = Instantiate(gemBomb, bulletPosition.position, Quaternion.identity);
+        int randomIndex = Random.Range(0, gemBomb.Length); // 랜덤한 인덱스 선택
+        GameObject shotBullet = Instantiate(gemBomb[randomIndex], bulletPosition.position, Quaternion.identity);
+
         Rigidbody2D rb = shotBullet.GetComponent<Rigidbody2D>();
 
         if (rb != null)
