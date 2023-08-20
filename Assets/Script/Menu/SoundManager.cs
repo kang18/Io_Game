@@ -25,17 +25,25 @@ public class SoundManager : MonoBehaviour
             sound_Button.volume = buttonVolume;
         }
 
-        if (PlayerPrefs.HasKey("BGMVolume_original") && PlayerPrefs.HasKey("ButtonVolume_original"))
+ 
+        if (PlayerPrefs.HasKey("BGMVolume_original") && PlayerPrefs.HasKey("ButtonVolume_original") && isMute)
         {
             float bgmVolume = PlayerPrefs.GetFloat("BGMVolume_original");
             sound_BGM.volume = bgmVolume;
             float buttonVolume = PlayerPrefs.GetFloat("ButtonVolume_original");
             sound_Button.volume = buttonVolume;
         }
-        
+
         LoadSoundSettings();
 
-        muteToggle.isOn = isMute;
+        if (PlayerPrefs.HasKey("isMute"))
+        {
+            if (PlayerPrefs.GetInt("isMute") == 1)
+            {
+                Mute();
+            }
+        }
+
         originalBGMVolume = sound_BGM.volume;
         originalButtonVolume = sound_Button.volume;
         musicVolumeSlider.value = originalBGMVolume;    // 씬 전환 시 슬라이더를 현재 volume 값에 맞춤
@@ -68,6 +76,8 @@ public class SoundManager : MonoBehaviour
             effectVolumeSlider.value = 0f;
 
             isMute = true;
+            int mutete = isMute ? 1 : 0;
+            PlayerPrefs.SetInt("isMute", mutete);
         }
         else
         {
@@ -77,6 +87,8 @@ public class SoundManager : MonoBehaviour
             effectVolumeSlider.value = PlayerPrefs.GetFloat("ButtonVolume_original");
 
             isMute = false;
+            int mutete = isMute ? 1 : 0;
+            PlayerPrefs.SetInt("isMute", mutete);
         }
         
     }
@@ -86,7 +98,6 @@ public class SoundManager : MonoBehaviour
 
     public void SaveSoundSettings()
     {
-
         PlayerPrefs.SetFloat("BGMVolume", sound_BGM.volume);
         PlayerPrefs.SetFloat("ButtonVolume", sound_Button.volume);
     }

@@ -6,13 +6,18 @@ public class Floor : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 충돌한 오브젝트의 스크립트 정보 가져오기
-        PlayerBehavior playerMovement = collision.gameObject.GetComponent<PlayerBehavior>();
+        PlayerBehavior playerBehavior = collision.gameObject.GetComponent<PlayerBehavior>();
 
-        if (playerMovement != null)
+        if (playerBehavior != null)
         {
             // isJump 상태를 false로 변경
-            playerMovement.isJump = false; 
+            playerBehavior.isJump = false;
+
+            // Animator 컴포넌트 가져오기
+            Animator animator = playerBehavior.GetComponent<Animator>();
+            animator.SetBool("isJump",false);
+
+
         }
 
 

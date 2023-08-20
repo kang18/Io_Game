@@ -56,9 +56,15 @@ public class PlayerBehavior : MonoBehaviour
 
     public GameManager gameManager;
 
+
+
+    // 애니메이션 관련 변수들
+    Animator anim;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         whiteScreen.SetActive(false);
     }
 
@@ -68,7 +74,6 @@ public class PlayerBehavior : MonoBehaviour
         {
             Die();
         }
-
 
         if(!doDie)
         {
@@ -117,7 +122,7 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
-        
+       
     }
 
     private void FixedUpdate()
@@ -127,6 +132,10 @@ public class PlayerBehavior : MonoBehaviour
         {
             Attack();
             attackTimer = 0f;
+        }
+        else if(!isAttack)
+        {
+            anim.SetBool("isAttack",false);
         }
     }
 
@@ -155,20 +164,32 @@ public class PlayerBehavior : MonoBehaviour
             // 이동 방향에 따라 오브젝트를 반전
             if (movement.x < 0) // 왼쪽으로 이동 중일 때
             {
-                transform.localScale = new Vector3(-3f, 3f, 1f); // 오브젝트 크기가 수정됨
+                transform.localScale = new Vector3(-2f, 2f, 1f); // 오브젝트 크기가 수정됨
+                anim.SetBool("isWalk", true);
             }
             else if (movement.x > 0) // 오른쪽으로 이동 중일 때
             {
-                transform.localScale = new Vector3(3f, 3f, 1f);
+                transform.localScale = new Vector3(2f, 2f, 1f);
+                anim.SetBool("isWalk", true);
             }
+            else if(movement.x == 0)
+            {
+                anim.SetBool("isWalk", false);
+            }
+
+
+
+
 
             if (keyJump && !isJump)
             {
                 isJump = true;
+                anim.SetBool("isJump", true);
 
                 if (movedown)
                 {
                     isUnderJump = true;
+                    anim.SetBool("isJump", true);
                     rigid.AddForce(Vector3.up * jumpForce / 2, ForceMode2D.Impulse);
                 }
                 else
@@ -180,6 +201,8 @@ public class PlayerBehavior : MonoBehaviour
             {
                 rigid.AddForce(Vector3.down * 2.33f, ForceMode2D.Force);
             }
+
+
         }
     }
 
@@ -190,6 +213,7 @@ public class PlayerBehavior : MonoBehaviour
         
         if (rb != null)
         {
+            anim.SetBool("isAttack",true);
             float direction = transform.localScale.x > 0 ? 1f : -1f;
             rb.velocity = new Vector2(40f * direction, 0f);
 
@@ -267,17 +291,19 @@ public class PlayerBehavior : MonoBehaviour
     private void Die() // 그냥 단순하게 죽었다는 것만 연출하는 함수임
     {
         doDie = true;
+        anim.SetTrigger("doDie");
 
-        Renderer renderer = GetComponent<Renderer>();
-        Material originalMaterial = renderer.material;
-        Material dieMaterial = new Material(originalMaterial);
-        dieMaterial.color = Color.black;
-
-        renderer.material = dieMaterial;
-
-        gameManager.DieEvent();
+        StartCoroutine(DelayedDieEvent());
     }
-    
+
+
+    private IEnumerator DelayedDieEvent()
+    {
+        yield return new WaitForSeconds(2.0f); // 2초 대기
+
+        gameManager.DieEvent(); // 2초 뒤에 실행
+    }
+
 
     private void ThrowGemBomb() // Skill 1번
     {

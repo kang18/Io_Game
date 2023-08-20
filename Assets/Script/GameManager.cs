@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public bool IsPaused { get => isPaused; } // isPaused를 외부에서 읽기만 가능하도록 getter만 선언
 
-   
     public PlayerBehavior player;
     public Image hpBar;
     public GameObject []gemBar;
@@ -178,4 +177,6 @@ public class GameManager : MonoBehaviour
     {
         soundPanel.SetActive(!soundPanel.activeSelf);
     }
+
+
 }

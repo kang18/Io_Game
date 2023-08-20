@@ -24,8 +24,12 @@ public class WhiteScreenBomb : MonoBehaviour
             // Check if the Monster script component is not null
             if (monsterScript != null)
             {
-                monsterScript.StartCoroutine("OnDamage");
-                monsterScript.hp -= dmg;
+                if(monsterScript.isInAttackRange)
+                {
+                    monsterScript.StartCoroutine("OnDamage");
+                    monsterScript.hp -= dmg;
+                }
+                
             }
 
             if (boss != null)

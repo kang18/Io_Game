@@ -13,6 +13,7 @@ TagManager:
   - Gem
   - Stalactite
   - DownFloor
+  - AttackRagne
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Player
   - PlayerRope
   - Floor
-  - 
+  - AttackRange
   - 
   - 
   - Bullet
