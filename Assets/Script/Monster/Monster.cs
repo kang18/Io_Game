@@ -15,7 +15,7 @@ public class Monster : MonoBehaviour
     // 피격시 깜빡임을 위한 변수들
     public Color hitColor; // 피격시 보여지는 색상
     public float hitDuration = 0.1f; // 색상이 바뀌는 시간
-    private Renderer renderer;
+    private new Renderer renderer;
     private Color originalColor;
 
     public SpawnManager spawnManager; // SpawnManager 스크립트의 참조를 저장할 변수
@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour
 
     void OnEnable()
     {
+        PlayerBehavior playerBehavior = FindObjectOfType<PlayerBehavior>();
         renderer = GetComponent<Renderer>();
         originalColor = renderer.material.color;
         if (id) // 스프라이트가 반대로 되어 있는 것들 뒤집는 용
