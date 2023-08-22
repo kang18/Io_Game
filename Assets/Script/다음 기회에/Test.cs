@@ -26,5 +26,6 @@ public class Test : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
+        //¡÷ºÆ
     }
 }
