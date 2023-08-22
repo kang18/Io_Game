@@ -21,6 +21,7 @@ namespace RopeWrapper
     public class RopeShootController : MonoBehaviour
     {
         public PlayerBehavior target;
+        Animator anim;
 
         public Transform player;
 
@@ -32,6 +33,7 @@ namespace RopeWrapper
         private void Start()
         {
             target = player.GetComponent<PlayerBehavior>();
+            anim = target.GetComponent<Animator>();
 
             GetComponent<Collider2D>().enabled = false;
             pushOutIncrement = GetComponent<LineRenderer>().startWidth / 100f;
@@ -61,6 +63,13 @@ namespace RopeWrapper
             GetComponent<Rigidbody2D>().velocity = ropeShootVelocity * shootVector;
 
             GetComponent<RopeWrapController>().RopeIsJustShot();
+
+            // 1초 후에 isJump 애니메이션을 실행
+            Invoke("SetIsJumpAnimation", 0.5f);
+        }
+        private void SetIsJumpAnimation()
+        {
+            anim.SetBool("isJump", true);
         }
 
         //When right mouse button is clicked, cancel the rope by zeroing velocity and disabling collider to avoid any problems while rope is not shot
