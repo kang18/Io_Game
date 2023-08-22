@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Bullet
   - Monster
+  - House
+  - MonsterAttack
+  - Floor
+  - UpArray
+  - Gem
+  - Stalactite
+  - DownFloor
+  - AttackRagne
   layers:
   - Default
   - TransparentFX
@@ -14,30 +22,30 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerOnDamage
+  - Player
+  - PlayerRope
+  - Floor
+  - AttackRange
   - 
   - 
   - Bullet
   - 
   - 
+  - House
   - 
   - 
-  - 
-  - 
+  - Stalactite
   - Monster
+  - MonsterAttack
+  - MonsterStep
+  - MonsterRope
+  - RopeWrapLayer
+  - 
+  - Rope
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Gem
   - 
   m_SortingLayers:
   - name: Default
