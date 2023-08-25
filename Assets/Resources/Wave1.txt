@@ -1,1 +1,11 @@
-10,Basic,1
+5,Golem,1
+0,Golem,0
+10,Golem,1
+0,Golem,0
+0,Golem,1
+10,Flying,1
+10,Flying,0
+5,Golem,1
+0,Golem,0
+5,Flying,1
+5,Flying,0
